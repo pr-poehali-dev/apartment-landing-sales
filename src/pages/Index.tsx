@@ -43,6 +43,7 @@ const GALLERY = [
   { src: GD("1ZSpGEJKHhja1oFEEpKOnkA9o5RWMO9N9"), label: "Территория" },
   { src: GD("10AJRH3Xnqi3FxRx8LHgEMONZIAlvogGq"), label: "Набережная" },
   { src: GD("1CJrgIg_vWCC6kQl5dgmvlU4AIL7N-T5-"), label: "Двор" },
+  { src: GD("1Ht_JjVdv3dHjw_7XSH6cuPgBXHM2z9JA"), label: "Вид на пруд" },
 ];
 
 const INFRA = [
@@ -141,30 +142,28 @@ export default function Index() {
               </span>
 
               <h1
-                className="font-black text-white mb-5 leading-none"
-                style={{ fontSize: "clamp(2.8rem, 6vw, 5rem)", textShadow: "0 2px 24px rgba(0,0,0,0.28)" }}
+                className="font-black text-white mb-3 leading-none"
+                style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)", textShadow: "0 2px 18px rgba(0,0,0,0.28)", letterSpacing: "0.04em", textTransform: "uppercase", opacity: 0.85 }}
               >
-                ЖК<br />
-                <span style={{ color: "var(--c-mint)" }}>Андроновский</span>
+                ЖК <span style={{ color: "var(--c-mint)" }}>Андроновский</span>
               </h1>
 
-              <p className="text-white/80 text-xl font-medium mb-2">Квартиры комфорт-класса у пруда</p>
-              <p className="text-white/60 text-base mb-9 max-w-lg leading-relaxed">
-                Малоэтажный 5-этажный дом с собственной набережной. Квартиры с личными террасами. Ключи в 2027 году.
+              <p className="text-white/70 text-base mb-10 max-w-lg leading-relaxed">
+                Малоэтажный дом с набережной пруда. Квартиры с личными террасами. Чистовая отделка.
               </p>
 
-              {/* Stats */}
-              <div className="flex flex-wrap gap-8 mb-10">
+              {/* Stats — АКЦЕНТ */}
+              <div className="flex flex-wrap gap-10 mb-10">
                 {[
                   { val: "3,6", unit: "млн", label: "от, цена квартиры" },
                   { val: "5",   unit: "эт.", label: "этажей в доме" },
                   { val: "2027",unit: "",    label: "год сдачи" },
                 ].map(s => (
-                  <div key={s.val}>
-                    <div className="font-black leading-none" style={{ fontSize: "clamp(2rem,4vw,2.8rem)", color: "var(--c-mint)" }}>
-                      {s.val} <span className="text-xl opacity-80">{s.unit}</span>
+                  <div key={s.val} className="flex flex-col">
+                    <div className="font-black leading-none tabular-nums" style={{ fontSize: "clamp(3.2rem, 6.5vw, 5.2rem)", color: "var(--c-mint)", textShadow: "0 2px 24px rgba(0,0,0,0.2)" }}>
+                      {s.val}<span style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)", opacity: 0.75, marginLeft: "0.2em" }}>{s.unit}</span>
                     </div>
-                    <div className="text-white/55 text-sm mt-1">{s.label}</div>
+                    <div className="text-white/50 text-sm mt-1 font-medium">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -425,7 +424,7 @@ export default function Index() {
               </div>
               <div className="rounded-3xl overflow-hidden shadow-lg" style={{ height: "360px" }}>
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?ll=56.2880%2C58.0220&z=15&l=map&pt=56.2880%2C58.0220%2Cpm2rdm&text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%201-%D1%8F%20%D0%93%D0%B8%D1%80%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%2C%2033"
+                  src="https://yandex.ru/map-widget/v1/?ll=56.3002%2C58.0347&z=16&l=map&pt=56.3002%2C58.0347%2Cpm2rdm"
                   width="100%" height="100%" style={{ border: 0 }} title="Карта ЖК Андроновский"
                 />
               </div>
@@ -510,12 +509,16 @@ export default function Index() {
               ))}
 
               <div className="flex gap-3 pt-2">
-                {["WhatsApp", "Telegram"].map(app => (
-                  <a key={app} href="#"
-                    className="px-5 py-3 rounded-xl font-medium text-white text-sm transition-all duration-200 hover:bg-white/20 glass-dark">
-                    {app}
-                  </a>
-                ))}
+                <a href="https://t.me/maks_andronovsky" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-white text-sm transition-all duration-200 hover:bg-white/20 glass-dark">
+                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
+                  Telegram
+                </a>
+                <a href="https://t.me/maks_andronovsky" target="_blank" rel="noopener noreferrer"
+                  className="flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-white text-sm transition-all duration-200 hover:bg-white/20 glass-dark">
+                  <Icon name="User" size={15} />
+                  МАКС
+                </a>
               </div>
 
               {/* Quick callback */}
