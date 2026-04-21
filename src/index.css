@@ -4,43 +4,42 @@
 
 @layer base {
   :root {
-    --background: 210 30% 98%;
-    --foreground: 215 35% 12%;
+    --background: 46 30% 94%;
+    --foreground: 168 20% 18%;
 
     --card: 0 0% 100%;
-    --card-foreground: 215 35% 12%;
+    --card-foreground: 168 20% 18%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 215 35% 12%;
+    --popover-foreground: 168 20% 18%;
 
-    --primary: 210 85% 32%;
+    --primary: 168 19% 38%;
     --primary-foreground: 0 0% 100%;
 
-    --secondary: 200 40% 92%;
-    --secondary-foreground: 215 35% 12%;
+    --secondary: 157 30% 82%;
+    --secondary-foreground: 168 20% 18%;
 
-    --muted: 210 25% 94%;
-    --muted-foreground: 215 20% 50%;
+    --muted: 46 20% 90%;
+    --muted-foreground: 168 10% 45%;
 
-    --accent: 197 90% 48%;
+    --accent: 190 28% 57%;
     --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 210 40% 98%;
 
-    --border: 214 25% 88%;
-    --input: 214 25% 88%;
-    --ring: 210 85% 32%;
+    --border: 157 20% 78%;
+    --input: 157 20% 78%;
+    --ring: 168 19% 38%;
 
     --radius: 0.75rem;
 
-    /* Brand Colors */
-    --brand-blue: #1a5fa8;
-    --brand-blue-light: #2d8bce;
-    --brand-sky: #0ea5e9;
-    --brand-navy: #0c2f5a;
-    --brand-water: #bae6fd;
-    --brand-gold: #c9a84c;
+    --c-sand: #ebead6;
+    --c-mint: #aedac5;
+    --c-teal: #6eac9b;
+    --c-forest: #517b71;
+    --c-sky: #6caebc;
+    --c-dark: #2c4a43;
   }
 }
 
@@ -48,20 +47,13 @@
   * {
     @apply border-border;
   }
-
   html {
     scroll-behavior: smooth;
   }
-
   body {
-    @apply bg-background text-foreground;
     font-family: "Golos Text", sans-serif;
-  }
-
-  h1,
-  h2,
-  h3 {
-    font-family: "Golos Text", sans-serif;
+    background-color: var(--c-sand);
+    color: var(--c-dark);
   }
 }
 
@@ -70,140 +62,113 @@
     font-family: "Cormorant Garamond", serif;
   }
 
-  .font-body {
-    font-family: "Golos Text", sans-serif;
-  }
-
-  .text-brand-blue {
-    color: var(--brand-blue);
-  }
-  .text-brand-sky {
-    color: var(--brand-sky);
-  }
-  .text-brand-navy {
-    color: var(--brand-navy);
-  }
-  .text-brand-gold {
-    color: var(--brand-gold);
-  }
-  .bg-brand-blue {
-    background-color: var(--brand-blue);
-  }
-  .bg-brand-navy {
-    background-color: var(--brand-navy);
-  }
-  .bg-brand-water {
-    background-color: var(--brand-water);
-  }
-
   .section-title {
     font-family: "Golos Text", sans-serif;
-    font-weight: 700;
+    font-weight: 800;
     @apply text-3xl md:text-4xl lg:text-5xl;
-    color: var(--brand-navy);
+    color: var(--c-dark);
     line-height: 1.15;
   }
 
-  .cta-primary {
-    background-color: var(--brand-blue);
+  .btn-primary {
+    background-color: var(--c-forest);
     color: white;
-    font-family: "Golos Text", sans-serif;
     font-weight: 600;
-    @apply px-8 py-4 rounded-xl text-lg transition-all duration-300;
+    @apply px-7 py-3.5 rounded-xl text-base transition-all duration-300 inline-flex items-center gap-2;
   }
-  .cta-primary:hover {
-    background-color: var(--brand-blue-light);
+  .btn-primary:hover {
+    background-color: var(--c-teal);
     transform: translateY(-2px);
-    box-shadow: 0 8px 30px rgba(26, 95, 168, 0.35);
+    box-shadow: 0 8px 28px rgba(81, 123, 113, 0.35);
   }
 
-  .cta-outline {
-    border: 2px solid white;
+  .btn-outline-white {
+    border: 2px solid rgba(255, 255, 255, 0.8);
     color: white;
-    font-family: "Golos Text", sans-serif;
+    background: transparent;
     font-weight: 600;
-    @apply px-8 py-4 rounded-xl text-lg transition-all duration-300 bg-transparent;
+    @apply px-7 py-3.5 rounded-xl text-base transition-all duration-300 inline-flex items-center gap-2;
   }
-  .cta-outline:hover {
+  .btn-outline-white:hover {
     background-color: rgba(255, 255, 255, 0.15);
     transform: translateY(-2px);
   }
 
-  .water-gradient {
-    background: linear-gradient(135deg, #0c2f5a 0%, #1a5fa8 50%, #2d8bce 100%);
+  .hero-overlay {
+    background: linear-gradient(
+      135deg,
+      rgba(44, 74, 67, 0.87) 0%,
+      rgba(81, 123, 113, 0.68) 55%,
+      rgba(108, 174, 188, 0.45) 100%
+    );
+  }
+  .forest-gradient {
+    background: linear-gradient(
+      135deg,
+      var(--c-dark) 0%,
+      var(--c-forest) 65%,
+      var(--c-teal) 100%
+    );
+  }
+  .sand-section {
+    background-color: var(--c-sand);
+  }
+  .mint-section {
+    background: linear-gradient(180deg, #e2f2eb 0%, #d0eadf 100%);
   }
 
-  .glass-card {
-    background: rgba(255, 255, 255, 0.85);
-    backdrop-filter: blur(12px);
+  .glass-light {
+    background: rgba(235, 234, 214, 0.9);
+    backdrop-filter: blur(14px);
     border: 1px solid rgba(255, 255, 255, 0.6);
   }
+  .glass-dark {
+    background: rgba(44, 74, 67, 0.28);
+    backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.18);
+  }
 
-  .animate-fade-up {
-    animation: fadeUp 0.7s ease forwards;
+  .badge-mint {
+    background: linear-gradient(135deg, var(--c-mint), #c3e8d8);
+    color: var(--c-dark);
+    @apply text-xs font-semibold px-3 py-1 rounded-full;
+  }
+
+  .card-lift {
+    @apply transition-all duration-300;
+  }
+  .card-lift:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 20px 50px rgba(81, 123, 113, 0.18);
   }
 
   @keyframes fadeUp {
     from {
       opacity: 0;
-      transform: translateY(30px);
+      transform: translateY(26px);
     }
     to {
       opacity: 1;
       transform: translateY(0);
     }
   }
-
-  .delay-100 {
+  .anim-up {
+    animation: fadeUp 0.65s ease forwards;
+  }
+  .anim-up.d1 {
     animation-delay: 0.1s;
+    opacity: 0;
   }
-  .delay-200 {
-    animation-delay: 0.2s;
+  .anim-up.d2 {
+    animation-delay: 0.22s;
+    opacity: 0;
   }
-  .delay-300 {
-    animation-delay: 0.3s;
+  .anim-up.d3 {
+    animation-delay: 0.34s;
+    opacity: 0;
   }
-  .delay-400 {
-    animation-delay: 0.4s;
-  }
-  .delay-500 {
-    animation-delay: 0.5s;
-  }
-
-  .wave-divider {
-    position: relative;
-    overflow: hidden;
-  }
-
-  .nav-link {
-    @apply text-sm font-medium transition-colors duration-200;
-    font-family: "Golos Text", sans-serif;
-    color: rgba(255, 255, 255, 0.85);
-  }
-  .nav-link:hover {
-    color: white;
-  }
-
-  .stat-number {
-    font-family: "Golos Text", sans-serif;
-    font-weight: 900;
-    color: var(--brand-sky);
-    line-height: 1;
-  }
-
-  .plan-card {
-    @apply rounded-2xl overflow-hidden transition-all duration-300 cursor-pointer;
-    border: 1px solid hsl(var(--border));
-  }
-  .plan-card:hover {
-    transform: translateY(-6px);
-    box-shadow: 0 20px 50px rgba(26, 95, 168, 0.15);
-    border-color: var(--brand-blue);
-  }
-
-  .badge-water {
-    background: linear-gradient(135deg, #bae6fd, #e0f2fe);
-    color: var(--brand-navy);
-    @apply text-xs font-semibold px-3 py-1 rounded-full;
+  .anim-up.d4 {
+    animation-delay: 0.48s;
+    opacity: 0;
   }
 }
