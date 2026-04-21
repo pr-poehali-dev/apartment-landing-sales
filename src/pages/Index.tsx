@@ -424,7 +424,7 @@ export default function Index() {
               </div>
               <div className="rounded-3xl overflow-hidden shadow-lg" style={{ height: "360px" }}>
                 <iframe
-                  src="https://yandex.ru/map-widget/v1/?ll=56.3002%2C58.0347&z=16&l=map&pt=56.3002%2C58.0347%2Cpm2rdm"
+                  src="https://yandex.ru/map-widget/v1/?ll=56.175725%2C57.958974&z=16&l=map&pt=56.175725%2C57.958974%2Cpm2rdm"
                   width="100%" height="100%" style={{ border: 0 }} title="Карта ЖК Андроновский"
                 />
               </div>
@@ -490,20 +490,21 @@ export default function Index() {
             {/* Info */}
             <div className="space-y-6">
               {[
-                { icon: "Phone",   label: "Телефон",    val: "+7 (342) 200-00-00", href: "tel:+73422000000" },
-                { icon: "Clock",   label: "Работаем",   val: "Пн–Вс: 9:00–20:00", href: null },
-                { icon: "MapPin",  label: "Офис продаж",val: "Пермь, Индустриальный район", href: null },
+                { icon: "Phone",   label: "Телефон",    val: "+7 (342) 200-00-00", href: "tel:+73422000000", sub: null },
+                { icon: "Clock",   label: "Режим работы", val: "Пн–Пт: 9:00–20:00", href: null, sub: "Сб: 10:00–17:00" },
+                { icon: "MapPin",  label: "Офис продаж", val: "Гостиница «Урал», ул. Ленина, 58, 1 эт.", href: null, sub: "г. Пермь" },
               ].map(row => (
-                <div key={row.label} className="flex items-center gap-4">
-                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 glass-dark">
+                <div key={row.label} className="flex items-start gap-4">
+                  <div className="w-12 h-12 rounded-xl flex items-center justify-center shrink-0 glass-dark mt-0.5">
                     <Icon name={row.icon} size={20} style={{ color: "var(--c-mint)" } as React.CSSProperties} fallback="Info" />
                   </div>
                   <div>
                     <div className="text-white/50 text-xs mb-0.5">{row.label}</div>
                     {row.href
                       ? <a href={row.href} className="text-white font-semibold text-lg hover:text-[#AEDAC5] transition-colors">{row.val}</a>
-                      : <div className="text-white font-semibold">{row.val}</div>
+                      : <div className="text-white font-semibold leading-snug">{row.val}</div>
                     }
+                    {row.sub && <div className="text-white/50 text-sm mt-0.5">{row.sub}</div>}
                   </div>
                 </div>
               ))}
@@ -539,8 +540,33 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ═══ ДИСКЛЕЙМЕРЫ ═══ */}
+      <section style={{ background: "#1e2f2c" }} className="py-10">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Кредитный дисклеймер */}
+          <div className="mb-6 px-5 py-4 rounded-xl" style={{ background: "rgba(255,255,255,0.05)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <p className="text-white/70 text-xs font-bold uppercase tracking-widest mb-1">Важно</p>
+            <p className="text-white/55 text-xs leading-relaxed">
+              ИЗУЧИТЕ ВСЕ УСЛОВИЯ КРЕДИТА (ЗАЙМА) НА САЙТЕ В СООТВЕТСТВУЮЩЕМ РАЗДЕЛЕ. ОЦЕНИВАЙТЕ СВОИ ФИНАНСОВЫЕ ВОЗМОЖНОСТИ И РИСКИ
+            </p>
+          </div>
+
+          {/* Рекламные дисклеймеры */}
+          <div className="space-y-3">
+            {[
+              `*Реклама. Застройщик ООО СЗ «КЕЛШ», ИНН 5902050200. Проектная декларация на сайте наш.дом.рф. В рекламе указана квартира №1, S=22,3 м², цена 3 568 000 ₽ в ЖК Андроновский на ул. 1-я Гиринская, 33. Цена актуальна на 01.04.2026 г. пока квартира есть в наличии. Акция действует 01.04.2026 – 30.04.2026. Подробности акции уточняйте в офисе продаж застройщика. Рекламодатель может изменить сроки и условия акции. Не является публичной офертой.`,
+              `*Реклама. Застройщик ООО СЗ «КЕЛШ», ИНН 5902050200. Проектная декларация на сайте наш.дом.рф. В рекламе указана квартира №1, S=22,3 м², цена 3 568 000 ₽ в ЖК Андроновский на ул. 1-я Гиринская, 33. Цена актуальна на 01.04.2026 г. пока квартира есть в наличии. При покупке квартиры в ЖК – кладовая в подарок. Акция действует 01.04.2026 – 30.04.2026. Количество кладовых, участвующих в акции, ограничено. Подробности акции уточняйте в офисе продаж застройщика. Рекламодатель может изменить сроки и условия акции. Не является публичной офертой.`,
+              `*Реклама. Застройщик ООО СЗ «КЕЛШ», ИНН 5902050200. Проектная декларация на сайте наш.дом.рф. При покупке квартиры в ЖК Андроновский на ул. 1-я Гиринская, 33, дарим кладовую. Акция действует 01.04.2026 – 30.04.2026. Количество кладовых, участвующих в акции, ограничено. Подробности акции уточняйте в офисе продаж застройщика. Рекламодатель может изменить сроки и условия акции. Не является публичной офертой.`,
+              `*Реклама. Застройщик ООО СЗ «КЕЛШ», ИНН 5902050200. Проектная декларация на сайте наш.дом.рф. Расчет ипотечного платежа произведен на основании стоимости квартиры №60, S=22,3 м², цена 3 586 000 ₽ в ЖК Андроновский на ул. 1-я Гиринская, 33. Цена актуальна на 01.04.2026 г. пока квартира есть в наличии. Кредит предоставляет АО «Альфа-Банк». Генеральная лицензия ЦБ РФ № 1326 от 16.01.2015 г. ПСК 23,155% — 32,115%. Ставка 6% годовых по программе «Ипотека с господдержкой для семей с одним ребенком младше 7 лет, а также для семей с ребёнком с особыми потребностями». Валюта: российский рубль. ПВ от 30,1%. Срок кредита до 30 лет. Максимальная сумма кредита 6 млн руб. Банк вправе отказать в выдаче кредита без объяснения причин. Подробнее об условиях кредитования на alfabank.ru. Архитектурная модель здания отрисована без учета окружающей застройки и прилегающего рельефа и может отличаться от фактической. Срок акции 01.04.2026 – 30.04.2026. Подробности акции уточняйте в офисе продаж застройщика. Рекламодатель может изменить сроки и условия акции. Не является публичной офертой.`,
+            ].map((text, i) => (
+              <p key={i} className="text-white/35 text-xs leading-relaxed">{text}</p>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* ═══ FOOTER ═══ */}
-      <footer style={{ background: "var(--c-dark)" }} className="py-7">
+      <footer style={{ background: "var(--c-dark)" }} className="py-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "var(--c-teal)" }}>
@@ -548,8 +574,8 @@ export default function Index() {
             </div>
             <span className="text-white font-bold text-sm tracking-widest uppercase">Андроновский</span>
           </div>
-          <div className="text-white/35 text-xs text-center">
-            © 2024 ЖК Андроновский, Пермь. Проектная декларация на сайте застройщика.
+          <div className="text-white/30 text-xs text-center">
+            © 2026 ЖК Андроновский. Застройщик ООО СЗ «КЕЛШ», ИНН 5902050200. Проектная декларация на наш.дом.рф
           </div>
           <a href="tel:+73422000000" className="text-white/50 hover:text-white text-sm transition-colors">
             +7 (342) 200-00-00
