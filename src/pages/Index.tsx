@@ -1,11 +1,17 @@
 import { useState } from "react";
 import Icon from "@/components/ui/icon";
 
-/* ─── Фото из Google Drive (прямые ссылки) ─── */
-/* Пока используем сгенерированные — замените на ссылки из Drive когда пришлёте ID файлов */
-const IMG_HERO     = "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/files/ee795a31-8184-43e7-9ccf-ccb3aeb46b74.jpg";
-const IMG_INTERIOR = "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/files/787d41a2-86c4-476d-acef-a0211602749d.jpg";
-const IMG_TERRACE  = "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/files/4dbc5a34-59c1-4d61-b616-e91eb1ae5015.jpg";
+/* ─── Фото из Google Drive ─── */
+const GD = (id: string) => `https://lh3.googleusercontent.com/d/${id}`;
+
+const IMG_HERO = GD("1XA7Qv9jswAxz5BAiNAFKJAu1M0btAd52");
+
+const IMG_FINISH = [
+  GD("1BxmbqrV_CqRHw4kUf_AFtaSuYC0tchUP"),
+  GD("18RZTXWLVEJkxPLot4MLE0Vn9yDz9f8Mr"),
+  GD("18Y4UMXE9wPED3OtgCxSOniI-4xzHREAb"),
+  GD("1lsR2F-6pj0-k6tASpRJ0Hh33hDglwZkU"),
+];
 
 const NAV = [
   { label: "Преимущества", href: "#advantages" },
@@ -25,19 +31,18 @@ const ADVANTAGES = [
 ];
 
 const PLANS = [
-  { type: "Студия",      area: "28–32", price: "от 3 600 000 ₽", m2: "128 000 ₽/м²", floor: "2–5 эт.", badge: "Хит",          feat: ["Европланировка", "Окна на пруд"] },
-  { type: "1-комнатная", area: "38–44", price: "от 4 800 000 ₽", m2: "122 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Терраса на 1 эт.", "Гардеробная"] },
-  { type: "2-комнатная", area: "55–68", price: "от 6 900 000 ₽", m2: "118 000 ₽/м²", floor: "1–5 эт.", badge: "Лучший выбор", feat: ["Кухня-гостиная", "2 санузла"] },
-  { type: "3-комнатная", area: "78–92", price: "от 9 200 000 ₽", m2: "115 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Панорамные окна", "Терраса на 1 эт."] },
+  { type: "Студия",        area: "28–32", price: "от 3 600 000 ₽", m2: "128 000 ₽/м²", floor: "2–5 эт.", badge: "Хит",          feat: ["Европланировка", "Окна на пруд"], emoji: "🏠" },
+  { type: "1-комнатная",  area: "38–44", price: "от 4 800 000 ₽", m2: "122 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Терраса на 1 эт.", "Гардеробная"], emoji: "🛋️" },
+  { type: "2-комнатная",  area: "55–68", price: "от 6 900 000 ₽", m2: "118 000 ₽/м²", floor: "1–5 эт.", badge: "Лучший выбор", feat: ["Кухня-гостиная", "2 санузла"],    emoji: "🪟" },
+  { type: "Евро 3-комн.", area: "78–92", price: "от 9 200 000 ₽", m2: "115 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Панорамные окна", "Терраса на 1 эт."], emoji: "🌿" },
 ];
 
 const GALLERY = [
-  { src: IMG_HERO,     label: "Вид на ЖК" },
-  { src: IMG_INTERIOR, label: "Интерьер" },
-  { src: IMG_TERRACE,  label: "Терраса" },
-  { src: IMG_HERO,     label: "Набережная" },
-  { src: IMG_INTERIOR, label: "Кухня-гостиная" },
-  { src: IMG_TERRACE,  label: "Двор" },
+  { src: GD("1wLuhmSY0dF9k4LVPC6tNSuzz9VBeLWuo"), label: "Вид на ЖК" },
+  { src: GD("1vzEGQNuKB3AC3nBBxYYxORoNjZt-_rTQ"), label: "Фасад" },
+  { src: GD("1ZSpGEJKHhja1oFEEpKOnkA9o5RWMO9N9"), label: "Территория" },
+  { src: GD("10AJRH3Xnqi3FxRx8LHgEMONZIAlvogGq"), label: "Набережная" },
+  { src: GD("1CJrgIg_vWCC6kQl5dgmvlU4AIL7N-T5-"), label: "Двор" },
 ];
 
 const INFRA = [
@@ -260,7 +265,7 @@ export default function Index() {
                     </span>
                   )}
                   <div className="text-center">
-                    <div className="text-5xl mb-1">🏠</div>
+                    <div className="text-5xl mb-1">{p.emoji}</div>
                     <div className="font-bold" style={{ color: "var(--c-dark)" }}>{p.area} м²</div>
                   </div>
                 </div>
@@ -353,6 +358,49 @@ export default function Index() {
         )}
       </section>
 
+      {/* ═══ ЧИСТОВАЯ ОТДЕЛКА ═══ */}
+      <section className="py-24 mint-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid lg:grid-cols-2 gap-14 items-center">
+            <div>
+              <span className="badge-mint inline-block mb-5">Без лишних хлопот</span>
+              <h2 className="section-title mb-5">Чистовая<br />отделка</h2>
+              <p className="text-gray-500 text-lg leading-relaxed mb-8">
+                Заезжайте и живите сразу. Квартиры сдаются с чистовой отделкой — выровненные стены, напольное покрытие, сантехника, межкомнатные двери.
+              </p>
+              <ul className="space-y-3 mb-8">
+                {[
+                  "Стяжка и выравнивание стен",
+                  "Ламинат / плитка в санузле",
+                  "Сантехника и розетки",
+                  "Межкомнатные двери",
+                  "Застеклённые окна REHAU",
+                ].map(feat => (
+                  <li key={feat} className="flex items-center gap-3 text-base" style={{ color: "var(--c-dark)" }}>
+                    <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--c-mint)" }}>
+                      <Icon name="Check" size={11} style={{ color: "var(--c-forest)" } as React.CSSProperties} />
+                    </div>
+                    {feat}
+                  </li>
+                ))}
+              </ul>
+              <a href="#contacts" className="btn-primary">
+                <Icon name="MessageCircle" size={17} />
+                Получить прайс-лист
+              </a>
+            </div>
+
+            <div className="grid grid-cols-2 gap-3">
+              {IMG_FINISH.map((src, i) => (
+                <div key={i} className="overflow-hidden rounded-2xl" style={{ aspectRatio: "4/3" }}>
+                  <img src={src} alt={`Отделка ${i+1}`} className="w-full h-full object-cover transition-transform duration-500 hover:scale-105" />
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ ЛОКАЦИЯ ═══ */}
       <section id="location" className="py-24 mint-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -360,16 +408,27 @@ export default function Index() {
             <span className="badge-mint inline-block mb-4">Где находится</span>
             <h2 className="section-title">Локация</h2>
             <p className="text-gray-500 mt-4 text-lg max-w-lg mx-auto">
-              Индустриальный район — устоявшийся район с развитой инфраструктурой.
+              ул. 1-я Гиринская, 33 — Индустриальный район, устоявшийся и с развитой инфраструктурой.
             </p>
           </div>
 
           <div className="grid lg:grid-cols-2 gap-10 items-start mb-12">
-            <div className="rounded-3xl overflow-hidden shadow-lg" style={{ height: "400px" }}>
-              <iframe
-                src="https://yandex.ru/map-widget/v1/?ll=56.245%2C58.095&z=14&l=map&pt=56.245%2C58.095%2Cpm2rdm"
-                width="100%" height="100%" style={{ border: 0 }} title="Карта"
-              />
+            <div>
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-10 h-10 rounded-xl flex items-center justify-center" style={{ background: "var(--c-forest)" }}>
+                  <Icon name="MapPin" size={18} className="text-white" />
+                </div>
+                <div>
+                  <div className="font-bold text-base" style={{ color: "var(--c-dark)" }}>г. Пермь, ул. 1-я Гиринская, д. 33</div>
+                  <div className="text-gray-400 text-sm">Индустриальный район</div>
+                </div>
+              </div>
+              <div className="rounded-3xl overflow-hidden shadow-lg" style={{ height: "360px" }}>
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?ll=56.2880%2C58.0220&z=15&l=map&pt=56.2880%2C58.0220%2Cpm2rdm&text=%D0%9F%D0%B5%D1%80%D0%BC%D1%8C%2C%201-%D1%8F%20%D0%93%D0%B8%D1%80%D0%B8%D0%BD%D1%81%D0%BA%D0%B0%D1%8F%2C%2033"
+                  width="100%" height="100%" style={{ border: 0 }} title="Карта ЖК Андроновский"
+                />
+              </div>
             </div>
 
             <div>
