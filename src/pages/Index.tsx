@@ -94,6 +94,95 @@ function LeadForm({ dark = false }: { dark?: boolean }) {
   );
 }
 
+function MortgageCalc() {
+  const [price, setPrice] = useState(3568000);
+  const [down, setDown] = useState(30);
+  const [years, setYears] = useState(25);
+  const rate = 6;
+
+  const loanAmount = price * (1 - down / 100);
+  const monthlyRate = rate / 100 / 12;
+  const n = years * 12;
+  const payment = Math.round(loanAmount * (monthlyRate * Math.pow(1 + monthlyRate, n)) / (Math.pow(1 + monthlyRate, n) - 1));
+  const totalPay = Math.round(payment * n);
+  const overpay = Math.round(totalPay - loanAmount);
+
+  const fmt = (v: number) => v.toLocaleString("ru-RU");
+
+  return (
+    <div className="grid lg:grid-cols-2 gap-10 items-center">
+      <div className="space-y-7">
+        {/* Стоимость */}
+        <div>
+          <div className="flex justify-between mb-2">
+            <span className="text-sm font-medium" style={{ color: "var(--c-dark)" }}>Стоимость квартиры</span>
+            <span className="font-bold text-sm" style={{ color: "var(--c-forest)" }}>{fmt(price)} ₽</span>
+          </div>
+          <input type="range" min={3568000} max={8000000} step={50000} value={price}
+            onChange={e => setPrice(Number(e.target.value))}
+            className="w-full accent-[var(--c-teal)] h-2 rounded-full cursor-pointer" />
+          <div className="flex justify-between text-xs text-gray-400 mt-1"><span>3,6 млн</span><span>8 млн</span></div>
+        </div>
+
+        {/* Первый взнос */}
+        <div>
+          <div className="flex justify-between mb-2">
+            <span className="text-sm font-medium" style={{ color: "var(--c-dark)" }}>Первоначальный взнос</span>
+            <span className="font-bold text-sm" style={{ color: "var(--c-forest)" }}>{down}% — {fmt(Math.round(price * down / 100))} ₽</span>
+          </div>
+          <input type="range" min={30} max={90} step={1} value={down}
+            onChange={e => setDown(Number(e.target.value))}
+            className="w-full accent-[var(--c-teal)] h-2 rounded-full cursor-pointer" />
+          <div className="flex justify-between text-xs text-gray-400 mt-1"><span>30%</span><span>90%</span></div>
+        </div>
+
+        {/* Срок */}
+        <div>
+          <div className="flex justify-between mb-2">
+            <span className="text-sm font-medium" style={{ color: "var(--c-dark)" }}>Срок кредита</span>
+            <span className="font-bold text-sm" style={{ color: "var(--c-forest)" }}>{years} лет</span>
+          </div>
+          <input type="range" min={5} max={30} step={1} value={years}
+            onChange={e => setYears(Number(e.target.value))}
+            className="w-full accent-[var(--c-teal)] h-2 rounded-full cursor-pointer" />
+          <div className="flex justify-between text-xs text-gray-400 mt-1"><span>5 лет</span><span>30 лет</span></div>
+        </div>
+
+        <div className="text-xs text-gray-400 leading-relaxed">
+          Ставка 6% — семейная ипотека с господдержкой. Расчёт ориентировочный.
+        </div>
+      </div>
+
+      {/* Результат */}
+      <div className="rounded-2xl p-8 flex flex-col gap-5" style={{ background: "var(--c-dark)" }}>
+        <div>
+          <div className="text-white/50 text-sm mb-1">Ежемесячный платёж</div>
+          <div className="font-black text-white" style={{ fontSize: "clamp(2.4rem, 5vw, 3.5rem)" }}>
+            {fmt(payment)} ₽
+          </div>
+        </div>
+        <div className="border-t border-white/10 pt-5 space-y-3">
+          {[
+            { label: "Сумма кредита", val: `${fmt(Math.round(loanAmount))} ₽` },
+            { label: "Переплата", val: `${fmt(overpay)} ₽` },
+            { label: "Ставка", val: `${rate}%` },
+          ].map(r => (
+            <div key={r.label} className="flex justify-between">
+              <span className="text-white/50 text-sm">{r.label}</span>
+              <span className="text-white font-semibold text-sm">{r.val}</span>
+            </div>
+          ))}
+        </div>
+        <a href="#contacts"
+          className="mt-2 w-full text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:opacity-90"
+          style={{ background: "var(--c-mint)", color: "var(--c-dark)" }}>
+          Получить одобрение
+        </a>
+      </div>
+    </div>
+  );
+}
+
 export default function Index() {
   const [lightbox, setLightbox] = useState<number | null>(null);
 
@@ -142,10 +231,10 @@ export default function Index() {
               </span>
 
               <h1
-                className="font-black text-white mb-3 leading-none"
-                style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)", textShadow: "0 2px 18px rgba(0,0,0,0.28)", letterSpacing: "0.04em", textTransform: "uppercase", opacity: 0.85 }}
+                className="font-black mb-3 leading-none"
+                style={{ fontSize: "clamp(1.6rem, 3.2vw, 2.6rem)", textShadow: "0 2px 18px rgba(0,0,0,0.28)", letterSpacing: "0.04em", textTransform: "uppercase", color: "var(--c-sand)" }}
               >
-                ЖК <span style={{ color: "var(--c-mint)" }}>Андроновский</span>
+                ЖК Андроновский
               </h1>
 
               <p className="text-white/70 text-base mb-10 max-w-lg leading-relaxed">
@@ -350,6 +439,17 @@ export default function Index() {
               Рассчитать
             </a>
           </div>
+        </div>
+      </section>
+
+      {/* ═══ ИПОТЕЧНЫЙ КАЛЬКУЛЯТОР ═══ */}
+      <section className="py-24 mint-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="section-title">Ипотечный калькулятор</h2>
+            <p className="text-gray-500 mt-4 text-lg">Рассчитайте платёж по семейной ипотеке — ставка 6%</p>
+          </div>
+          <MortgageCalc />
         </div>
       </section>
 
