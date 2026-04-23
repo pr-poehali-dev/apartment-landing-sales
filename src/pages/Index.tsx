@@ -159,12 +159,11 @@ export default function Index() {
                   { val: "5",   unit: "эт.", label: "этажей в доме" },
                   { val: "2027",unit: "",    label: "год сдачи" },
                 ].map(s => (
-                  <div key={s.val} className="flex flex-col px-6 py-4 rounded-2xl"
-                    style={{ background: "rgba(255,255,255,0.10)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.15)" }}>
-                    <div className="font-black leading-none tabular-nums" style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", color: "var(--c-mint)", textShadow: "0 2px 18px rgba(0,0,0,0.2)" }}>
+                  <div key={s.val} className="flex flex-col px-6 py-4 rounded-2xl glass-light">
+                    <div className="font-black leading-none tabular-nums" style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", color: "var(--c-forest)" }}>
                       {s.val}<span style={{ fontSize: "clamp(1.2rem, 2vw, 1.7rem)", opacity: 0.75, marginLeft: "0.2em" }}>{s.unit}</span>
                     </div>
-                    <div className="text-white/55 text-sm mt-1 font-medium">{s.label}</div>
+                    <div className="text-sm mt-1 font-medium" style={{ color: "var(--c-dark)", opacity: 0.6 }}>{s.label}</div>
                   </div>
                 ))}
               </div>
