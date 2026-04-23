@@ -296,6 +296,63 @@ export default function Index() {
         </div>
       </section>
 
+      {/* ═══ СПОСОБЫ ОПЛАТЫ ═══ */}
+      <section className="py-24 sand-section">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-14">
+            <h2 className="section-title">Способы оплаты</h2>
+            <p className="text-gray-500 mt-4 text-lg">Выберите удобный для вас формат — подберём условия</p>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {[
+              {
+                icon: "Baby",
+                title: "Семейная ипотека",
+                desc: "Ставка от 6% годовых для семей с детьми. Первоначальный взнос от 30%. Срок до 30 лет.",
+                accent: "var(--c-teal)",
+              },
+              {
+                icon: "ArrowLeftRight",
+                title: "Трейд-ин",
+                desc: "Продадим вашу текущую квартиру и зачтём стоимость в счёт новой. Быстро и без лишних хлопот.",
+                accent: "var(--c-forest)",
+              },
+              {
+                icon: "Banknote",
+                title: "Полная оплата",
+                desc: "Внесите всю сумму единовременно и зафиксируйте лучшую цену без переплат.",
+                accent: "var(--c-sky)",
+              },
+            ].map(item => (
+              <div key={item.title} className="bg-white rounded-2xl p-8 card-lift"
+                style={{ border: "1px solid rgba(174,218,197,0.45)" }}>
+                <div className="w-12 h-12 rounded-xl flex items-center justify-center mb-5"
+                  style={{ background: item.accent }}>
+                  <Icon name={item.icon} size={22} className="text-white" fallback="CreditCard" />
+                </div>
+                <h3 className="font-bold text-lg mb-3" style={{ color: "var(--c-dark)" }}>{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
+              </div>
+            ))}
+          </div>
+
+          {/* CTA */}
+          <div className="forest-gradient rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h3 className="text-white font-bold text-2xl md:text-3xl mb-1">Получите персональное предложение</h3>
+              <p className="text-white/65">Рассчитаем платёж и подберём оптимальный способ оплаты</p>
+            </div>
+            <a href="#contacts"
+              className="px-7 py-3.5 rounded-xl font-semibold text-sm inline-flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5 shrink-0"
+              style={{ background: "var(--c-sand)", color: "var(--c-dark)" }}>
+              <Icon name="Calculator" size={17} />
+              Рассчитать
+            </a>
+          </div>
+        </div>
+      </section>
+
       {/* ═══ ГАЛЕРЕЯ ═══ */}
       <section id="gallery" className="py-24 sand-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
