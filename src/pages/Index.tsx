@@ -26,7 +26,7 @@ const ADVANTAGES = [
   { icon: "Waves",        title: "Набережная пруда",       desc: "Облагороженная набережная прямо у дома — утренние прогулки без машин.", accent: "var(--c-sky)" },
   { icon: "Leaf",         title: "Террасы на 1 этаже",     desc: "Квартиры первого этажа с личными террасами и выходом в зелёный сад.", accent: "var(--c-teal)" },
   { icon: "MapPin",       title: "Развитый район",         desc: "Индустриальный район Перми: школы, сады, ТЦ, остановки — всё рядом.", accent: "var(--c-forest)" },
-  { icon: "Key",          title: "Ключи в 2027 году",      desc: "Зафиксируйте цену на старте — к сдаче она вырастет.", accent: "var(--c-sky)" },
+  { icon: "Key",          title: "Ключи в 2027 году",      desc: "Зафиксируйте цену на старте.", accent: "var(--c-sky)" },
   { icon: "ShieldCheck",  title: "Комфорт-класс",          desc: "Качественная отделка, современные инженерные решения, видеонаблюдение.", accent: "var(--c-teal)" },
 ];
 
@@ -153,17 +153,18 @@ export default function Index() {
               </p>
 
               {/* Stats — АКЦЕНТ */}
-              <div className="flex flex-wrap gap-10 mb-10">
+              <div className="flex flex-wrap gap-3 mb-10">
                 {[
                   { val: "3,6", unit: "млн", label: "от, цена квартиры" },
                   { val: "5",   unit: "эт.", label: "этажей в доме" },
                   { val: "2027",unit: "",    label: "год сдачи" },
                 ].map(s => (
-                  <div key={s.val} className="flex flex-col">
-                    <div className="font-black leading-none tabular-nums" style={{ fontSize: "clamp(3.2rem, 6.5vw, 5.2rem)", color: "var(--c-mint)", textShadow: "0 2px 24px rgba(0,0,0,0.2)" }}>
-                      {s.val}<span style={{ fontSize: "clamp(1.4rem, 2.5vw, 2rem)", opacity: 0.75, marginLeft: "0.2em" }}>{s.unit}</span>
+                  <div key={s.val} className="flex flex-col px-6 py-4 rounded-2xl"
+                    style={{ background: "rgba(255,255,255,0.10)", backdropFilter: "blur(10px)", border: "1px solid rgba(255,255,255,0.15)" }}>
+                    <div className="font-black leading-none tabular-nums" style={{ fontSize: "clamp(2.6rem, 5.5vw, 4.2rem)", color: "var(--c-mint)", textShadow: "0 2px 18px rgba(0,0,0,0.2)" }}>
+                      {s.val}<span style={{ fontSize: "clamp(1.2rem, 2vw, 1.7rem)", opacity: 0.75, marginLeft: "0.2em" }}>{s.unit}</span>
                     </div>
-                    <div className="text-white/50 text-sm mt-1 font-medium">{s.label}</div>
+                    <div className="text-white/55 text-sm mt-1 font-medium">{s.label}</div>
                   </div>
                 ))}
               </div>
@@ -200,7 +201,6 @@ export default function Index() {
       <section id="advantages" className="py-24 sand-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
-            <span className="badge-mint inline-block mb-4">Почему Андроновский</span>
             <h2 className="section-title">Уникальные черты<br />комплекса</h2>
             <p className="text-gray-500 mt-4 max-w-lg mx-auto text-lg">
               Малоэтажный дом у воды — редкость для Перми.
@@ -231,13 +231,13 @@ export default function Index() {
               <p className="text-white/65">Менеджер ответит и покажет все планировки</p>
             </div>
             <div className="flex flex-wrap gap-4 shrink-0">
-              <a href="tel:+73422000000" className="btn-outline-white"><Icon name="Phone" size={17} />Позвонить</a>
               <a href="#contacts"
                 className="px-7 py-3.5 rounded-xl font-semibold text-sm inline-flex items-center gap-2 transition-all duration-300 hover:-translate-y-0.5"
                 style={{ background: "var(--c-sand)", color: "var(--c-dark)" }}>
                 <Icon name="MessageCircle" size={17} />
                 Написать
               </a>
+              <a href="tel:+73422000000" className="btn-outline-white"><Icon name="Phone" size={17} />Позвонить</a>
             </div>
           </div>
         </div>
@@ -293,14 +293,7 @@ export default function Index() {
             ))}
           </div>
 
-          <div className="text-center">
-            <p className="text-gray-500 text-sm mb-3">Нет подходящего? Уточните — есть неопубликованные лоты</p>
-            <a href="tel:+73422000000" className="inline-flex items-center gap-2 font-semibold text-lg hover:underline"
-              style={{ color: "var(--c-forest)" }}>
-              <Icon name="Phone" size={17} />
-              +7 (342) 200-00-00
-            </a>
-          </div>
+
         </div>
       </section>
 
@@ -373,7 +366,7 @@ export default function Index() {
                   "Ламинат / плитка в санузле",
                   "Сантехника и розетки",
                   "Межкомнатные двери",
-                  "Застеклённые окна REHAU",
+                  "Горизонтальная разводка отопления",
                 ].map(feat => (
                   <li key={feat} className="flex items-center gap-3 text-base" style={{ color: "var(--c-dark)" }}>
                     <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0" style={{ background: "var(--c-mint)" }}>
@@ -508,19 +501,6 @@ export default function Index() {
                   </div>
                 </div>
               ))}
-
-              <div className="flex gap-3 pt-2">
-                <a href="https://t.me/maks_andronovsky" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-white text-sm transition-all duration-200 hover:bg-white/20 glass-dark">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M12 0C5.373 0 0 5.373 0 12s5.373 12 12 12 12-5.373 12-12S18.627 0 12 0zm5.894 8.221-1.97 9.28c-.145.658-.537.818-1.084.508l-3-2.21-1.447 1.394c-.16.16-.295.295-.605.295l.213-3.053 5.56-5.023c.242-.213-.054-.333-.373-.12l-6.871 4.326-2.962-.924c-.643-.204-.657-.643.136-.953l11.57-4.461c.537-.194 1.006.131.833.941z"/></svg>
-                  Telegram
-                </a>
-                <a href="https://t.me/maks_andronovsky" target="_blank" rel="noopener noreferrer"
-                  className="flex items-center gap-2 px-5 py-3 rounded-xl font-medium text-white text-sm transition-all duration-200 hover:bg-white/20 glass-dark">
-                  <Icon name="User" size={15} />
-                  МАКС
-                </a>
-              </div>
 
               {/* Quick callback */}
               <div className="glass-dark rounded-2xl p-5 mt-2">
