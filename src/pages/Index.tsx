@@ -176,7 +176,7 @@ function MortgageCalc() {
         <a href="#contacts"
           className="mt-2 w-full text-center py-3.5 rounded-xl font-semibold text-sm transition-all duration-300 hover:opacity-90"
           style={{ background: "var(--c-mint)", color: "var(--c-dark)" }}>
-          Получить одобрение
+          Получить персональное предложение
         </a>
       </div>
     </div>
@@ -283,7 +283,26 @@ export default function Index() {
         <a href="#advantages" className="absolute bottom-8 left-1/2 -translate-x-1/2 text-white/40 hover:text-white/80 transition-colors animate-bounce">
           <Icon name="ChevronDown" size={30} />
         </a>
+
+        {/* Бегущая строка */}
+        <div className="absolute bottom-0 left-0 right-0 overflow-hidden py-3" style={{ background: "var(--c-sand)" }}>
+          <div className="flex whitespace-nowrap" style={{ animation: "ticker 18s linear infinite" }}>
+            {Array.from({ length: 8 }).map((_, i) => (
+              <span key={i} className="flex items-center gap-6 px-8 text-sm font-bold tracking-widest uppercase" style={{ color: "var(--c-forest)" }}>
+                СТАРТ ПРОДАЖ
+                <span style={{ color: "var(--c-teal)", fontSize: "1.1em" }}>★</span>
+              </span>
+            ))}
+          </div>
+        </div>
       </section>
+
+      <style>{`
+        @keyframes ticker {
+          0%   { transform: translateX(0); }
+          100% { transform: translateX(-50%); }
+        }
+      `}</style>
 
       {/* ═══ ПРЕИМУЩЕСТВА ═══ */}
       <section id="advantages" className="py-24 sand-section">
