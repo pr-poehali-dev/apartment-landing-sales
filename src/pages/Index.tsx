@@ -54,6 +54,31 @@ const INFRA = [
   { icon: "Stethoscope",   label: "Медицина",     items: ["Поликлиника №5 — 10 мин", "ГКБ №21 — 15 мин"] },
 ];
 
+/* ─── Consents ─── */
+function Consents({ dark = false }: { dark?: boolean }) {
+  const [c1, setC1] = useState(false);
+  const [c2, setC2] = useState(false);
+  const [c3, setC3] = useState(false);
+  const txt = dark ? "text-white/55" : "text-gray-400";
+  const lnk = dark ? "text-white/80 underline hover:text-white" : "underline hover:opacity-70";
+  return (
+    <div className="flex flex-col gap-2 text-xs">
+      <label className={`flex items-start gap-2 cursor-pointer ${txt}`}>
+        <input type="checkbox" checked={c1} onChange={e => setC1(e.target.checked)} required className="mt-0.5 shrink-0 accent-[var(--c-teal)]" />
+        <span>Согласен(а) с <a href="https://mega.perm.ru/policy/" target="_blank" rel="noopener noreferrer" className={lnk}>Политикой конфиденциальности</a></span>
+      </label>
+      <label className={`flex items-start gap-2 cursor-pointer ${txt}`}>
+        <input type="checkbox" checked={c2} onChange={e => setC2(e.target.checked)} required className="mt-0.5 shrink-0 accent-[var(--c-teal)]" />
+        <span>Даю <a href="https://mega.perm.ru/consent/" target="_blank" rel="noopener noreferrer" className={lnk}>согласие на обработку персональных данных</a></span>
+      </label>
+      <label className={`flex items-start gap-2 cursor-pointer ${txt}`}>
+        <input type="checkbox" checked={c3} onChange={e => setC3(e.target.checked)} className="mt-0.5 shrink-0 accent-[var(--c-teal)]" />
+        <span>Согласен(а) на рекламную рассылку от ООО СЗ Келш</span>
+      </label>
+    </div>
+  );
+}
+
 /* ─── Lead Form ─── */
 function LeadForm({ dark = false }: { dark?: boolean }) {
   const [name, setName]   = useState("");
@@ -80,6 +105,7 @@ function LeadForm({ dark = false }: { dark?: boolean }) {
     <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="flex flex-col gap-3">
       <input type="text"  placeholder="Ваше имя"          value={name}  onChange={e => setName(e.target.value)}  className={inp} style={borderColor} required />
       <input type="tel"   placeholder="+7 (___) ___-__-__" value={phone} onChange={e => setPhone(e.target.value)} className={inp} style={borderColor} required />
+      <Consents dark={dark} />
       <button
         type="submit"
         className="w-full py-3.5 rounded-xl font-semibold text-white text-sm mt-1 transition-all duration-300 hover:-translate-y-0.5"
@@ -87,9 +113,6 @@ function LeadForm({ dark = false }: { dark?: boolean }) {
       >
         Получить консультацию
       </button>
-      <p className={`text-xs text-center ${dark ? "text-white/40" : "text-gray-400"}`}>
-        Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
-      </p>
     </form>
   );
 }
@@ -241,11 +264,17 @@ export default function Index() {
                 Малоэтажный дом с набережной пруда. Квартиры с личными террасами. Чистовая отделка.
               </p>
 
+              {/* Старт продаж */}
+              <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl mb-6" style={{ background: "var(--c-teal)", color: "white" }}>
+                <Icon name="Zap" size={14} />
+                <span className="text-sm font-bold uppercase tracking-wider">Старт продаж — апрель 2026</span>
+              </div>
+
               {/* Stats — АКЦЕНТ */}
               <div className="flex flex-wrap gap-3 mb-10">
                 {[
                   { val: "3,6", unit: "млн", label: "от, цена квартиры" },
-                  { val: "5",   unit: "эт.", label: "этажей в доме" },
+                  { val: "4",   unit: "эт.", label: "этажа в доме" },
                   { val: "2027",unit: "",    label: "год сдачи" },
                 ].map(s => (
                   <div key={s.val} className="flex flex-col px-6 py-4 rounded-2xl glass-light">
@@ -286,10 +315,10 @@ export default function Index() {
 
         {/* Бегущая строка */}
         <div className="absolute bottom-0 left-0 right-0 overflow-hidden py-3" style={{ background: "var(--c-sand)" }}>
-          <div className="flex whitespace-nowrap" style={{ animation: "ticker 18s linear infinite" }}>
-            {Array.from({ length: 8 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-6 px-8 text-sm font-bold tracking-widest uppercase" style={{ color: "var(--c-forest)" }}>
-                СТАРТ ПРОДАЖ
+          <div className="flex whitespace-nowrap ticker-track">
+            {Array.from({ length: 12 }).map((_, i) => (
+              <span key={i} className="flex items-center gap-6 px-8 text-sm font-bold tracking-widest uppercase shrink-0" style={{ color: "var(--c-forest)" }}>
+                {i % 2 === 0 ? "СТАРТ ПРОДАЖ" : "КЛАДОВАЯ В ПОДАРОК"}
                 <span style={{ color: "var(--c-teal)", fontSize: "1.1em" }}>★</span>
               </span>
             ))}
@@ -298,6 +327,9 @@ export default function Index() {
       </section>
 
       <style>{`
+        .ticker-track {
+          animation: ticker 22s linear infinite;
+        }
         @keyframes ticker {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-50%); }
@@ -614,17 +646,7 @@ export default function Index() {
             </div>
           </div>
 
-          <div className="rounded-3xl p-8 flex flex-col md:flex-row items-center justify-between gap-6"
-            style={{ background: "var(--c-dark)" }}>
-            <div>
-              <h3 className="text-white font-bold text-xl mb-1">Хотите увидеть вживую?</h3>
-              <p className="text-white/55 text-sm">Организуем бесплатный выезд на объект</p>
-            </div>
-            <a href="tel:+73422000000" className="btn-primary shrink-0">
-              <Icon name="Car" size={17} />
-              Поехать на объект
-            </a>
-          </div>
+
         </div>
       </section>
 
@@ -678,14 +700,17 @@ export default function Index() {
               <div className="glass-dark rounded-2xl p-5 mt-2">
                 <p className="text-white font-semibold mb-1">Быстрый звонок</p>
                 <p className="text-white/55 text-xs mb-4">Оставьте номер — перезвоним за 15 минут</p>
-                <div className="flex gap-2">
-                  <input type="tel" placeholder="+7 (___) ___-__-__"
-                    className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/35 focus:outline-none text-sm" />
-                  <button className="px-5 py-3 rounded-xl font-semibold text-white text-sm transition-colors hover:opacity-90"
-                    style={{ background: "var(--c-teal)" }}>
-                    Звонок
-                  </button>
-                </div>
+                <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-3">
+                  <div className="flex gap-2">
+                    <input type="tel" placeholder="+7 (___) ___-__-__"
+                      className="flex-1 px-4 py-3 rounded-xl bg-white/10 border border-white/20 text-white placeholder-white/35 focus:outline-none text-sm" />
+                    <button type="submit" className="px-5 py-3 rounded-xl font-semibold text-white text-sm transition-colors hover:opacity-90"
+                      style={{ background: "var(--c-teal)" }}>
+                      Звонок
+                    </button>
+                  </div>
+                  <Consents dark />
+                </form>
               </div>
             </div>
           </div>
