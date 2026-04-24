@@ -267,7 +267,7 @@ export default function Index() {
               {/* Старт продаж */}
               <div className="inline-flex items-center gap-2 px-4 py-2 rounded-xl mb-6" style={{ background: "var(--c-teal)", color: "white" }}>
                 <Icon name="Zap" size={14} />
-                <span className="text-sm font-bold uppercase tracking-wider">Старт продаж — апрель 2026</span>
+                <span className="text-sm font-bold uppercase tracking-wider">Старт продаж</span>
               </div>
 
               {/* Stats — АКЦЕНТ */}
@@ -318,7 +318,7 @@ export default function Index() {
           <div className="flex whitespace-nowrap ticker-track">
             {Array.from({ length: 12 }).map((_, i) => (
               <span key={i} className="flex items-center gap-6 px-8 text-sm font-bold tracking-widest uppercase shrink-0" style={{ color: "var(--c-forest)" }}>
-                {i % 2 === 0 ? "СТАРТ ПРОДАЖ" : "КЛАДОВАЯ В ПОДАРОК"}
+                КЛАДОВАЯ В ПОДАРОК
                 <span style={{ color: "var(--c-teal)", fontSize: "1.1em" }}>★</span>
               </span>
             ))}
