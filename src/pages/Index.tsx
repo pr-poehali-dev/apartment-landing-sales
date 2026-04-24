@@ -31,10 +31,10 @@ const ADVANTAGES = [
 ];
 
 const PLANS = [
-  { type: "Студия",        area: "28–32", price: "от 3 600 000 ₽", m2: "128 000 ₽/м²", floor: "2–5 эт.", badge: "Хит",          feat: ["Европланировка", "Окна на пруд"], emoji: "🏠" },
-  { type: "1-комнатная",  area: "38–44", price: "от 4 800 000 ₽", m2: "122 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Терраса на 1 эт.", "Гардеробная"], emoji: "🛋️" },
-  { type: "2-комнатная",  area: "55–68", price: "от 6 900 000 ₽", m2: "118 000 ₽/м²", floor: "1–5 эт.", badge: "Лучший выбор", feat: ["Кухня-гостиная", "2 санузла"],    emoji: "🪟" },
-  { type: "Евро 3-комн.", area: "78–92", price: "от 9 200 000 ₽", m2: "115 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Панорамные окна", "Терраса на 1 эт."], emoji: "🌿" },
+  { type: "Студия",       area: "28–32", price: "от 3 600 000 ₽", m2: "128 000 ₽/м²", floor: "2–5 эт.", badge: "Хит",          feat: ["Европланировка", "Окна на пруд"],      img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/db611255-30c1-46dd-ad5c-27ec7ded3c71.png" },
+  { type: "1-комнатная", area: "38–44", price: "от 4 800 000 ₽", m2: "122 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Терраса на 1 эт.", "Гардеробная"],    img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/4ffb42d6-e9b9-412b-ac14-bd94fa8f5a13.png" },
+  { type: "2-комнатная", area: "55–68", price: "от 6 900 000 ₽", m2: "118 000 ₽/м²", floor: "1–5 эт.", badge: "Лучший выбор", feat: ["Кухня-гостиная", "Лоджия"],          img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/6f2bc4c9-3ad5-43f6-af73-8aef6f25dcfe.png" },
+  { type: "3-комнатная", area: "78–92", price: "от 9 200 000 ₽", m2: "115 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Три жилых комнаты", "2 санузла"],     img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/08676f1d-f390-4fb8-b46d-333776a09a15.png" },
 ];
 
 const GALLERY = [
@@ -362,18 +362,15 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {PLANS.map(p => (
               <div key={p.type} className="card-lift bg-white rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(174,218,197,0.40)" }}>
-                <div className="relative h-40 flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg, var(--c-mint) 0%, #c3e8d8 100%)" }}>
+                <div className="relative h-52 bg-white flex items-center justify-center p-3">
                   {p.badge && (
-                    <span className="absolute top-3 left-3 text-xs font-bold px-3 py-1 rounded-full text-white"
+                    <span className="absolute top-3 left-3 z-10 text-xs font-bold px-3 py-1 rounded-full text-white"
                       style={{ background: "var(--c-forest)" }}>
                       {p.badge}
                     </span>
                   )}
-                  <div className="text-center">
-                    <div className="text-5xl mb-1">{p.emoji}</div>
-                    <div className="font-bold" style={{ color: "var(--c-dark)" }}>{p.area} м²</div>
-                  </div>
+                  <img src={p.img} alt={`Планировка ${p.type}`}
+                    className="w-full h-full object-contain" />
                 </div>
                 <div className="p-5">
                   <div className="flex items-center justify-between mb-3">
