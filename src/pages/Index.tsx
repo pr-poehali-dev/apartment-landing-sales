@@ -22,7 +22,7 @@ const NAV = [
 ];
 
 const ADVANTAGES = [
-  { icon: "Building2",    title: "Малоэтажность",         desc: "Всего 5 этажей — уютный масштаб, без толпы и суеты.", accent: "var(--c-forest)" },
+  { icon: "Building2",    title: "Малоэтажность",         desc: "Всего 4 этажа — уютный масштаб, без толпы и суеты.", accent: "var(--c-forest)" },
   { icon: "Waves",        title: "Набережная пруда",       desc: "Облагороженная набережная прямо у дома — утренние прогулки без машин.", accent: "var(--c-sky)" },
   { icon: "Leaf",         title: "Террасы на 1 этаже",     desc: "Квартиры первого этажа с личными террасами и выходом в зелёный сад.", accent: "var(--c-teal)" },
   { icon: "MapPin",       title: "Развитый район",         desc: "Индустриальный район Перми: школы, сады, ТЦ, остановки — всё рядом.", accent: "var(--c-forest)" },
@@ -31,10 +31,10 @@ const ADVANTAGES = [
 ];
 
 const PLANS = [
-  { type: "Студия",       area: "28–32", price: "от 3 600 000 ₽", m2: "128 000 ₽/м²", floor: "2–5 эт.", badge: "Хит",          feat: ["Европланировка", "Окна на пруд"],      img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/db611255-30c1-46dd-ad5c-27ec7ded3c71.png" },
-  { type: "1-комнатная", area: "38–44", price: "от 4 800 000 ₽", m2: "122 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Терраса на 1 эт.", "Гардеробная"],    img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/4ffb42d6-e9b9-412b-ac14-bd94fa8f5a13.png" },
-  { type: "2-комнатная", area: "55–68", price: "от 6 900 000 ₽", m2: "118 000 ₽/м²", floor: "1–5 эт.", badge: "Лучший выбор", feat: ["Кухня-гостиная", "Лоджия"],          img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/6f2bc4c9-3ad5-43f6-af73-8aef6f25dcfe.png" },
-  { type: "3-комнатная", area: "78–92", price: "от 9 200 000 ₽", m2: "115 000 ₽/м²", floor: "1–5 эт.", badge: null,           feat: ["Три жилых комнаты", "2 санузла"],     img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/08676f1d-f390-4fb8-b46d-333776a09a15.png" },
+  { type: "Студия",       area: "28–32", price: "от 3 600 000 ₽", m2: "128 000 ₽/м²", floor: "2–4 эт.", badge: "Хит",          feat: ["Европланировка", "Окна на пруд"],      img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/db611255-30c1-46dd-ad5c-27ec7ded3c71.png" },
+  { type: "1-комнатная", area: "38–44", price: "от 4 800 000 ₽", m2: "122 000 ₽/м²", floor: "1–4 эт.", badge: null,           feat: ["Терраса на 1 эт.", "Гардеробная"],    img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/4ffb42d6-e9b9-412b-ac14-bd94fa8f5a13.png" },
+  { type: "2-комнатная", area: "55–68", price: "от 6 900 000 ₽", m2: "118 000 ₽/м²", floor: "1–4 эт.", badge: "Лучший выбор", feat: ["Кухня-гостиная", "Лоджия"],          img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/6f2bc4c9-3ad5-43f6-af73-8aef6f25dcfe.png" },
+  { type: "3-комнатная", area: "78–92", price: "от 9 200 000 ₽", m2: "115 000 ₽/м²", floor: "1–4 эт.", badge: null,           feat: ["Три жилых комнаты", "2 санузла"],     img: "https://cdn.poehali.dev/projects/f17703db-a56c-466d-9eea-7fe9b4883293/bucket/08676f1d-f390-4fb8-b46d-333776a09a15.png" },
 ];
 
 const GALLERY = [
