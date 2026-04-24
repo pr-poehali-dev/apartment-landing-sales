@@ -96,10 +96,10 @@
 
   .hero-overlay {
     background: linear-gradient(
-      135deg,
-      rgba(44, 74, 67, 0.87) 0%,
-      rgba(81, 123, 113, 0.68) 55%,
-      rgba(108, 174, 188, 0.45) 100%
+      120deg,
+      rgba(20, 40, 35, 0.62) 0%,
+      rgba(44, 74, 67, 0.38) 55%,
+      rgba(0, 0, 0, 0.18) 100%
     );
   }
   .forest-gradient {
