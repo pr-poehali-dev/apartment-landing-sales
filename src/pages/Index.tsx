@@ -79,6 +79,66 @@ function Consents({ dark = true }: { dark?: boolean }) {
   );
 }
 
+/* ─── Lead Form Light (для белого фона) ─── */
+function LeadFormLight() {
+  const [name, setName]   = useState("");
+  const [phone, setPhone] = useState("");
+  const [sent, setSent]   = useState(false);
+
+  if (sent) {
+    return (
+      <div className="rounded-2xl p-8 text-center" style={{ background: "var(--c-mint)" }}>
+        <div className="w-14 h-14 rounded-full flex items-center justify-center mx-auto mb-4" style={{ background: "var(--c-forest)" }}>
+          <Icon name="Check" size={24} className="text-white" />
+        </div>
+        <p className="text-lg font-bold" style={{ color: "var(--c-dark)" }}>Заявка принята!</p>
+        <p className="mt-1 text-sm" style={{ color: "var(--c-dark)", opacity: 0.6 }}>Перезвоним в течение 15 минут</p>
+      </div>
+    );
+  }
+
+  const inp = "w-full px-4 py-3.5 rounded-xl border text-sm focus:outline-none transition-colors";
+  const inpStyle = { borderColor: "rgba(174,218,197,0.6)", background: "#f8faf9", color: "var(--c-dark)" };
+
+  return (
+    <form onSubmit={(e) => { e.preventDefault(); setSent(true); }} className="flex flex-col gap-3">
+      <input type="text"  placeholder="Ваше имя"          value={name}  onChange={e => setName(e.target.value)}  className={inp} style={inpStyle} required />
+      <input type="tel"   placeholder="+7 (___) ___-__-__" value={phone} onChange={e => setPhone(e.target.value)} className={inp} style={inpStyle} required />
+      <ConsentsLight />
+      <button
+        type="submit"
+        className="w-full py-3.5 rounded-full font-bold text-white text-sm mt-1 transition-all duration-300 hover:-translate-y-0.5"
+        style={{ background: "var(--c-forest)" }}
+      >
+        Получить консультацию
+      </button>
+    </form>
+  );
+}
+
+function ConsentsLight() {
+  const [c1, setC1] = useState(false);
+  const [c2, setC2] = useState(false);
+  const [c3, setC3] = useState(false);
+  const lnk = "underline hover:opacity-70 transition-opacity";
+  return (
+    <div className="flex flex-col gap-2 text-xs text-gray-400">
+      <label className="flex items-start gap-2 cursor-pointer">
+        <input type="checkbox" checked={c1} onChange={e => setC1(e.target.checked)} required className="mt-0.5 shrink-0 accent-[var(--c-forest)]" />
+        <span>Согласен(а) с <a href="https://mega.perm.ru/policy/" target="_blank" rel="noopener noreferrer" className={lnk}>Политикой конфиденциальности</a></span>
+      </label>
+      <label className="flex items-start gap-2 cursor-pointer">
+        <input type="checkbox" checked={c2} onChange={e => setC2(e.target.checked)} required className="mt-0.5 shrink-0 accent-[var(--c-forest)]" />
+        <span>Даю <a href="https://mega.perm.ru/consent/" target="_blank" rel="noopener noreferrer" className={lnk}>согласие на обработку персональных данных</a></span>
+      </label>
+      <label className="flex items-start gap-2 cursor-pointer">
+        <input type="checkbox" checked={c3} onChange={e => setC3(e.target.checked)} className="mt-0.5 shrink-0 accent-[var(--c-forest)]" />
+        <span>Согласен(а) на рекламную рассылку от ООО СЗ Келш</span>
+      </label>
+    </div>
+  );
+}
+
 /* ─── Lead Form ─── */
 function LeadForm() {
   const [name, setName]   = useState("");
@@ -142,43 +202,43 @@ function MortgageCalc() {
         ].map(r => (
           <div key={r.label}>
             <div className="flex justify-between mb-3">
-              <span className="text-sm text-white/50">{r.label}</span>
-              <span className="font-bold text-sm text-white">{r.val}</span>
+              <span className="text-sm text-gray-500">{r.label}</span>
+              <span className="font-bold text-sm" style={{ color: "var(--c-dark)" }}>{r.val}</span>
             </div>
             <input type="range" min={r.min} max={r.max} step={r.step} value={r.v}
               onChange={e => r.set(Number(e.target.value))}
               className={rangeStyle}
-              style={{ accentColor: "var(--c-pink)" }} />
-            <div className="flex justify-between text-xs text-white/25 mt-1"><span>{r.lo}</span><span>{r.hi}</span></div>
+              style={{ accentColor: "var(--c-forest)" }} />
+            <div className="flex justify-between text-xs text-gray-400 mt-1"><span>{r.lo}</span><span>{r.hi}</span></div>
           </div>
         ))}
-        <p className="text-xs text-white/25 leading-relaxed">
+        <p className="text-xs text-gray-400 leading-relaxed">
           Ставка 6% — семейная ипотека с господдержкой. Расчёт ориентировочный.*
         </p>
       </div>
 
-      <div className="rounded-3xl p-8 flex flex-col gap-5" style={{ background: "linear-gradient(135deg, rgba(222,65,149,0.15) 0%, rgba(242,119,66,0.15) 100%)", border: "1px solid rgba(222,65,149,0.2)" }}>
+      <div className="rounded-3xl p-8 flex flex-col gap-5" style={{ background: "linear-gradient(135deg, var(--c-forest) 0%, var(--c-teal) 100%)" }}>
         <div>
-          <div className="text-white/40 text-xs uppercase tracking-widest mb-2">Ежемесячный платёж</div>
+          <div className="text-white/60 text-xs uppercase tracking-widest mb-2">Ежемесячный платёж</div>
           <div className="font-black text-white" style={{ fontSize: "clamp(2.2rem, 5vw, 3.2rem)" }}>
             {fmt(payment)} ₽
           </div>
         </div>
-        <div className="border-t border-white/8 pt-5 space-y-3">
+        <div className="border-t border-white/15 pt-5 space-y-3">
           {[
             { label: "Сумма кредита", val: `${fmt(Math.round(loanAmount))} ₽` },
             { label: "Переплата",     val: `${fmt(overpay)} ₽` },
             { label: "Ставка",        val: `${rate}%` },
           ].map(r => (
             <div key={r.label} className="flex justify-between">
-              <span className="text-white/40 text-sm">{r.label}</span>
+              <span className="text-white/60 text-sm">{r.label}</span>
               <span className="text-white font-semibold text-sm">{r.val}</span>
             </div>
           ))}
         </div>
         <a href="#contacts"
-          className="mt-2 w-full text-center py-3.5 rounded-full font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5"
-          style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+          className="mt-2 w-full text-center py-3.5 rounded-full font-bold text-sm transition-all duration-300 hover:-translate-y-0.5"
+          style={{ background: "white", color: "var(--c-forest)" }}>
           Получить персональное предложение
         </a>
       </div>
@@ -195,24 +255,24 @@ export default function Index() {
       {/* ═══ NAVBAR ═══ */}
       <nav
         className="fixed top-0 left-0 right-0 z-50"
-        style={{ background: "rgba(26,52,46,0.92)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(174,218,197,0.12)" }}
+        style={{ background: "rgba(255,255,255,0.95)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(174,218,197,0.3)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
             <div className="w-8 h-8 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
               <Icon name="Building2" size={15} className="text-white" />
             </div>
-            <span className="text-white font-black text-sm tracking-widest uppercase">Андроновский</span>
+            <span className="font-black text-sm tracking-widest uppercase" style={{ color: "var(--c-dark)" }}>Андроновский</span>
           </div>
 
           <div className="hidden md:flex items-center gap-7">
             {NAV.map(n => (
-              <a key={n.href} href={n.href} className="text-sm text-white/50 hover:text-white transition-colors font-medium">{n.label}</a>
+              <a key={n.href} href={n.href} className="text-sm font-medium transition-colors hover:text-[var(--c-forest)]" style={{ color: "var(--c-dark)", opacity: 0.6 }}>{n.label}</a>
             ))}
           </div>
 
           <a href="tel:+73422000000" className="flex items-center gap-1.5 font-bold text-sm transition-all duration-300 px-4 py-2 rounded-full"
-            style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))", color: "white" }}>
+            style={{ background: "var(--c-forest)", color: "white" }}>
             <Icon name="Phone" size={13} />
             Позвонить
           </a>
@@ -220,93 +280,70 @@ export default function Index() {
       </nav>
 
       {/* ═══ HERO ═══ */}
-      <section className="relative min-h-screen flex items-center overflow-hidden">
+      <section className="relative flex flex-col overflow-hidden" style={{ minHeight: "100svh" }}>
+        {/* Фото на весь экран */}
         <div className="absolute inset-0 bg-cover bg-center" style={{ backgroundImage: `url(${IMG_HERO})` }} />
-        <div className="absolute inset-0 hero-overlay" />
+        {/* Тёмный оверлей */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(180deg, rgba(10,20,16,0.55) 0%, rgba(10,20,16,0.45) 50%, rgba(10,20,16,0.82) 100%)" }} />
 
-        {/* Декоративная вертикальная линия */}
-        <div className="absolute left-0 top-0 bottom-0 w-1 hidden lg:block" style={{ background: "linear-gradient(180deg, transparent, var(--c-pink), var(--c-orange), transparent)" }} />
+        {/* Контент по центру */}
+        <div className="relative z-10 flex flex-col items-center justify-center flex-1 text-center px-4 pt-24 pb-8">
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-28 pt-36 w-full">
-          <div className="grid lg:grid-cols-5 gap-12 items-center">
-
-            {/* Text */}
-            <div className="lg:col-span-3 anim-up">
-
-              {/* Старт продаж */}
-              <div className="inline-flex items-center gap-2 mb-6">
-                <span className="badge-pink">
-                  <Icon name="Zap" size={10} className="inline mr-1" />
-                  Старт продаж
-                </span>
-                <span className="badge-outline">Кладовая в подарок*</span>
-              </div>
-
-              <h1
-                className="font-black mb-2 leading-none"
-                style={{ fontSize: "clamp(2.4rem, 5.5vw, 5rem)", letterSpacing: "-0.02em", color: "white" }}
-              >
-                ЖК<br />
-                <span className="text-gradient">Андроновский</span>
-              </h1>
-
-              <p className="text-white/55 text-base mb-10 max-w-lg leading-relaxed mt-4" style={{ fontSize: "clamp(0.95rem, 1.5vw, 1.1rem)" }}>
-                Малоэтажный дом у пруда в Индустриальном районе Перми.<br />Квартиры с террасами. Чистовая отделка.
-              </p>
-
-              {/* Stats */}
-              <div className="flex flex-wrap gap-4 mb-10">
-                {[
-                  { val: "3,9", unit: "млн", label: "от, цена квартиры" },
-                  { val: "4",   unit: "эт.", label: "этажа в доме" },
-                  { val: "2027",unit: "",    label: "год сдачи" },
-                ].map(s => (
-                  <div key={s.val} className="flex flex-col px-5 py-4 rounded-2xl glass-card">
-                    <div className="font-black leading-none tabular-nums text-white" style={{ fontSize: "clamp(2rem, 4.5vw, 3.2rem)" }}>
-                      {s.val}<span className="text-white/40" style={{ fontSize: "0.45em", marginLeft: "0.2em" }}>{s.unit}</span>
-                    </div>
-                    <div className="text-xs mt-1 text-white/35 uppercase tracking-wider">{s.label}</div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="flex flex-wrap gap-3">
-                <a href="#plans" className="btn-primary">
-                  <Icon name="LayoutDashboard" size={16} />
-                  Смотреть планировки
-                </a>
-                <a href="#contacts" className="btn-outline-white">
-                  <Icon name="MessageCircle" size={16} />
-                  Получить консультацию
-                </a>
-              </div>
+          {/* Бейдж сверху */}
+          <div className="inline-flex items-center gap-2 px-5 py-2 rounded-full mb-8 anim-up"
+            style={{ background: "rgba(255,255,255,0.12)", backdropFilter: "blur(12px)", border: "1px solid rgba(255,255,255,0.2)" }}>
+            <div className="w-6 h-6 rounded-full flex items-center justify-center" style={{ background: "var(--c-forest)" }}>
+              <Icon name="Home" size={12} className="text-white" />
             </div>
+            <span className="text-white text-sm font-semibold">Старт продаж — квартиры у пруда!</span>
+          </div>
 
-            {/* Form card */}
-            <div className="lg:col-span-2 anim-up d3">
-              <div className="rounded-3xl p-7 max-w-sm mx-auto lg:ml-auto lg:mr-0" style={{ background: "rgba(28,55,48,0.85)", backdropFilter: "blur(24px)", border: "1px solid rgba(174,218,197,0.18)" }}>
-                <div className="mb-5">
-                  <div className="gradient-line w-10 mb-4" />
-                  <h3 className="font-black text-white text-xl mb-1">Узнать стоимость</h3>
-                  <p className="text-white/40 text-sm">Подберём квартиру под ваш бюджет</p>
+          {/* Главный заголовок */}
+          <h1 className="font-black text-white text-center leading-none mb-6 anim-up d1"
+            style={{ fontSize: "clamp(2.2rem, 7vw, 6rem)", letterSpacing: "-0.02em", textTransform: "uppercase", textShadow: "0 4px 40px rgba(0,0,0,0.4)" }}>
+            Малоэтажный ЖК<br />
+            <span style={{ color: "var(--c-mint)" }}>Андроновский</span><br />
+            <span style={{ fontSize: "0.65em", opacity: 0.9 }}>от 3,9 млн рублей*</span>
+          </h1>
+
+          {/* Кнопка */}
+          <div className="flex flex-wrap gap-3 justify-center mb-10 anim-up d2">
+            <a href="#plans" className="btn-primary" style={{ fontSize: "1rem", letterSpacing: "0.06em", textTransform: "uppercase" }}>
+              Подобрать квартиру
+            </a>
+            <a href="tel:+73422000000" className="btn-outline-white" style={{ fontSize: "1rem" }}>
+              <Icon name="Phone" size={16} />
+              +7 (342) 200-00-00
+            </a>
+          </div>
+        </div>
+
+        {/* Панель с 3 цифрами внизу */}
+        <div className="relative z-10 w-full anim-up d3">
+          <div className="mx-4 mb-0 rounded-t-3xl overflow-hidden"
+            style={{ background: "rgba(20,35,30,0.82)", backdropFilter: "blur(20px)", border: "1px solid rgba(174,218,197,0.12)", borderBottom: "none" }}>
+            <div className="max-w-4xl mx-auto grid grid-cols-3 divide-x divide-white/10">
+              {[
+                { val: "от 3,9 млн ₽",   label: "Цена квартиры" },
+                { val: "6%",             label: "Семейная ипотека" },
+                { val: "2027",           label: "Год сдачи" },
+              ].map(s => (
+                <div key={s.val} className="flex flex-col items-center justify-center py-6 px-4 text-center">
+                  <div className="font-black text-white mb-1" style={{ fontSize: "clamp(1.3rem, 3vw, 2rem)" }}>{s.val}</div>
+                  <div className="text-xs uppercase tracking-widest" style={{ color: "var(--c-mint)" }}>{s.label}</div>
                 </div>
-                <LeadForm />
-              </div>
+              ))}
             </div>
           </div>
         </div>
 
-        <a href="#advantages" className="absolute bottom-20 left-1/2 -translate-x-1/2 text-white/25 hover:text-white/60 transition-colors animate-bounce">
-          <Icon name="ChevronDown" size={28} />
-        </a>
-
         {/* Бегущая строка */}
-        <div className="absolute bottom-0 left-0 right-0 overflow-hidden py-3" style={{ background: "linear-gradient(90deg, var(--c-pink), var(--c-orange))" }}>
+        <div className="relative z-10 overflow-hidden py-2.5" style={{ background: "linear-gradient(90deg, var(--c-forest), var(--c-teal))" }}>
           <div className="flex whitespace-nowrap ticker-track">
             {Array.from({ length: 14 }).map((_, i) => (
-              <span key={i} className="flex items-center gap-5 px-8 text-xs font-black tracking-widest uppercase shrink-0 text-white/90">
+              <span key={i} className="flex items-center gap-5 px-8 text-xs font-black tracking-widest uppercase shrink-0 text-white/85">
                 КЛАДОВАЯ В ПОДАРОК
-                <span className="opacity-60">✦</span>
+                <span className="opacity-50">✦</span>
               </span>
             ))}
           </div>
@@ -330,10 +367,10 @@ export default function Index() {
           <div className="mb-16">
             <span className="badge-mint mb-5 inline-block">Почему мы</span>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <h2 className="section-title text-white">
+              <h2 className="section-title">
                 Уникальные черты<br /><span className="text-gradient">комплекса</span>
               </h2>
-              <p className="text-white/40 max-w-xs text-sm leading-relaxed">
+              <p className="text-gray-500 max-w-xs text-sm leading-relaxed">
                 Малоэтажный дом у воды — редкость для Перми. Здесь есть всё для комфортной жизни.
               </p>
             </div>
@@ -344,28 +381,28 @@ export default function Index() {
             {ADVANTAGES.map(adv => (
               <div
                 key={adv.title}
-                className="card-lift rounded-2xl p-7 group cursor-default"
-                style={{ background: "rgba(81,123,113,0.14)", border: "1px solid rgba(174,218,197,0.15)" }}
+                className="card-lift rounded-2xl p-7 group cursor-default bg-white"
+                style={{ border: "1px solid rgba(174,218,197,0.5)", boxShadow: "0 2px 16px rgba(81,123,113,0.07)" }}
               >
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center"
-                    style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                    style={{ background: "var(--c-forest)" }}>
                     <Icon name={adv.icon} size={19} className="text-white" fallback="Star" />
                   </div>
-                  <span className="text-4xl font-black text-white/6 tabular-nums">{adv.num}</span>
+                  <span className="text-4xl font-black tabular-nums" style={{ color: "rgba(81,123,113,0.1)" }}>{adv.num}</span>
                 </div>
-                <h3 className="font-bold text-white text-base mb-2">{adv.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{adv.desc}</p>
+                <h3 className="font-bold text-base mb-2" style={{ color: "var(--c-dark)" }}>{adv.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{adv.desc}</p>
               </div>
             ))}
           </div>
 
           {/* CTA */}
           <div className="rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
-            style={{ background: "linear-gradient(135deg, rgba(222,65,149,0.12) 0%, rgba(242,119,66,0.12) 100%)", border: "1px solid rgba(222,65,149,0.2)" }}>
+            style={{ background: "linear-gradient(135deg, var(--c-forest) 0%, var(--c-teal) 100%)" }}>
             <div>
               <h3 className="text-white font-black text-2xl md:text-3xl mb-1">Хотите узнать подробнее?</h3>
-              <p className="text-white/40">Менеджер ответит и покажет все планировки</p>
+              <p className="text-white/65">Менеджер ответит и покажет все планировки</p>
             </div>
             <div className="flex flex-wrap gap-3 shrink-0">
               <a href="#contacts" className="btn-primary">
@@ -386,15 +423,15 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="badge-mint mb-5 inline-block">Варианты квартир</span>
-            <h2 className="section-title text-white mb-3">Планировки</h2>
-            <p className="text-white/40 text-base">Студии и квартиры 1–3 комнаты. На 1 этаже — с личными террасами.</p>
+            <h2 className="section-title mb-3">Планировки</h2>
+            <p className="text-gray-500 text-base">Студии и квартиры 1–3 комнаты. На 1 этаже — с личными террасами.</p>
           </div>
 
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {PLANS.map(p => (
-              <div key={p.type} className="card-lift rounded-2xl overflow-hidden flex flex-col"
-                style={{ background: "rgba(81,123,113,0.16)", border: "1px solid rgba(174,218,197,0.18)" }}>
-                <div className="relative bg-white/5 flex items-center justify-center p-4" style={{ height: "200px" }}>
+              <div key={p.type} className="card-lift rounded-2xl overflow-hidden flex flex-col bg-white"
+                style={{ border: "1px solid rgba(174,218,197,0.45)", boxShadow: "0 2px 16px rgba(81,123,113,0.07)" }}>
+                <div className="relative bg-gray-50 flex items-center justify-center p-4" style={{ height: "200px" }}>
                   {p.badge && (
                     <span className="absolute top-3 left-3 z-10 badge-pink">{p.badge}</span>
                   )}
@@ -402,17 +439,17 @@ export default function Index() {
                 </div>
                 <div className="p-5 flex flex-col flex-1">
                   <div className="flex items-center justify-between mb-2">
-                    <h3 className="font-bold text-white text-base">{p.type}</h3>
-                    <span className="text-xs text-white/30">{p.floor}</span>
+                    <h3 className="font-bold text-base" style={{ color: "var(--c-dark)" }}>{p.type}</h3>
+                    <span className="text-xs text-gray-400">{p.floor}</span>
                   </div>
-                  <div className="text-xs text-white/30 mb-1">{p.area} м²</div>
-                  <div className="text-lg font-black mb-1 text-gradient">{p.price}</div>
-                  <div className="text-xs text-white/25 mb-4">{p.m2}</div>
+                  <div className="text-xs text-gray-400 mb-1">{p.area} м²</div>
+                  <div className="text-lg font-black mb-1" style={{ color: "var(--c-forest)" }}>{p.price}</div>
+                  <div className="text-xs text-gray-400 mb-4">{p.m2}</div>
                   <ul className="space-y-1.5 mb-5 flex-1">
                     {p.feat.map(f => (
-                      <li key={f} className="flex items-center gap-2 text-sm text-white/50">
+                      <li key={f} className="flex items-center gap-2 text-sm text-gray-600">
                         <div className="w-4 h-4 rounded-full flex items-center justify-center shrink-0"
-                          style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                          style={{ background: "var(--c-forest)" }}>
                           <Icon name="Check" size={9} className="text-white" />
                         </div>
                         {f}
@@ -421,7 +458,7 @@ export default function Index() {
                   </ul>
                   <a href="#contacts"
                     className="block w-full text-center py-3 rounded-full font-bold text-sm text-white transition-all duration-300 hover:-translate-y-0.5"
-                    style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                    style={{ background: "var(--c-forest)" }}>
                     Узнать подробнее
                   </a>
                 </div>
@@ -437,10 +474,10 @@ export default function Index() {
           <div className="mb-14">
             <span className="badge-mint mb-5 inline-block">Условия покупки</span>
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
-              <h2 className="section-title text-white">
+              <h2 className="section-title">
                 Способы <span className="text-gradient">оплаты</span>
               </h2>
-              <p className="text-white/40 max-w-xs text-sm leading-relaxed">
+              <p className="text-gray-500 max-w-xs text-sm leading-relaxed">
                 Выберите удобный для вас формат — подберём условия
               </p>
             </div>
@@ -448,30 +485,30 @@ export default function Index() {
 
           <div className="grid md:grid-cols-3 gap-5 mb-12">
             {[
-              { icon: "Baby",          title: "Семейная ипотека",           desc: "Ставка от 6% годовых для семей с детьми. Первоначальный взнос от 30%. Срок до 30 лет.", num: "01" },
-              { icon: "ArrowLeftRight",title: "Трейд-ин",                   desc: "Продадим вашу текущую квартиру и зачтём стоимость в счёт новой. Быстро и без лишних хлопот.", num: "02" },
-              { icon: "Banknote",      title: "Полная оплата",              desc: "Внесите всю сумму единовременно и зафиксируйте лучшую цену без переплат.", num: "03" },
+              { icon: "Baby",          title: "Семейная ипотека",  desc: "Ставка от 6% годовых для семей с детьми. Первоначальный взнос от 30%. Срок до 30 лет.", num: "01" },
+              { icon: "ArrowLeftRight",title: "Трейд-ин",          desc: "Продадим вашу текущую квартиру и зачтём стоимость в счёт новой. Быстро и без лишних хлопот.", num: "02" },
+              { icon: "Banknote",      title: "Полная оплата",     desc: "Внесите всю сумму единовременно и зафиксируйте лучшую цену без переплат.", num: "03" },
             ].map(item => (
-              <div key={item.title} className="card-lift rounded-2xl p-8 group"
-                style={{ background: "rgba(81,123,113,0.14)", border: "1px solid rgba(174,218,197,0.15)" }}>
+              <div key={item.title} className="card-lift rounded-2xl p-8 bg-white"
+                style={{ border: "1px solid rgba(174,218,197,0.45)", boxShadow: "0 2px 16px rgba(81,123,113,0.07)" }}>
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center"
-                    style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                    style={{ background: "var(--c-forest)" }}>
                     <Icon name={item.icon} size={20} className="text-white" fallback="CreditCard" />
                   </div>
-                  <span className="text-4xl font-black text-white/6 tabular-nums">{item.num}</span>
+                  <span className="text-4xl font-black tabular-nums" style={{ color: "rgba(81,123,113,0.1)" }}>{item.num}</span>
                 </div>
-                <h3 className="font-bold text-white text-lg mb-3">{item.title}</h3>
-                <p className="text-white/40 text-sm leading-relaxed">{item.desc}</p>
+                <h3 className="font-bold text-lg mb-3" style={{ color: "var(--c-dark)" }}>{item.title}</h3>
+                <p className="text-gray-500 text-sm leading-relaxed">{item.desc}</p>
               </div>
             ))}
           </div>
 
           <div className="rounded-3xl p-8 md:p-10 flex flex-col md:flex-row items-center justify-between gap-6"
-            style={{ background: "linear-gradient(135deg, rgba(222,65,149,0.12), rgba(242,119,66,0.12))", border: "1px solid rgba(222,65,149,0.2)" }}>
+            style={{ background: "linear-gradient(135deg, var(--c-dark) 0%, var(--c-forest) 100%)" }}>
             <div>
               <h3 className="text-white font-black text-2xl md:text-3xl mb-1">Получите персональное предложение</h3>
-              <p className="text-white/40">Рассчитаем платёж и подберём оптимальный способ оплаты</p>
+              <p className="text-white/65">Рассчитаем платёж и подберём оптимальный способ оплаты</p>
             </div>
             <a href="#contacts" className="btn-primary shrink-0">
               <Icon name="Calculator" size={16} />
@@ -486,8 +523,8 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="badge-mint mb-5 inline-block">Ипотека</span>
-            <h2 className="section-title text-white mb-3">Ипотечный <span className="text-gradient">калькулятор</span></h2>
-            <p className="text-white/40 text-base">Рассчитайте платёж по семейной ипотеке — ставка 6%*</p>
+            <h2 className="section-title mb-3">Ипотечный <span className="text-gradient">калькулятор</span></h2>
+            <p className="text-gray-500 text-base">Рассчитайте платёж по семейной ипотеке — ставка 6%*</p>
           </div>
           <MortgageCalc />
         </div>
@@ -498,7 +535,7 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="badge-mint mb-5 inline-block">Посмотрите сами</span>
-            <h2 className="section-title text-white">Галерея</h2>
+            <h2 className="section-title">Галерея</h2>
           </div>
 
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mb-10">
@@ -550,8 +587,8 @@ export default function Index() {
           <div className="grid lg:grid-cols-2 gap-16 items-center">
             <div>
               <span className="badge-mint mb-5 inline-block">Без лишних хлопот</span>
-              <h2 className="section-title text-white mb-4">Чистовая<br /><span className="text-gradient">отделка</span></h2>
-              <p className="text-white/45 text-base leading-relaxed mb-8">
+              <h2 className="section-title mb-4">Чистовая<br /><span className="text-gradient">отделка</span></h2>
+              <p className="text-gray-500 text-base leading-relaxed mb-8">
                 Заезжайте и живите сразу. Квартиры сдаются с чистовой отделкой — эстетичные виниловые обои светлых оттенков, напольное покрытие, сантехника, межкомнатные двери.
               </p>
               <ul className="space-y-3 mb-8">
@@ -562,9 +599,9 @@ export default function Index() {
                   "Межкомнатные двери",
                   "Горизонтальная разводка отопления",
                 ].map(feat => (
-                  <li key={feat} className="flex items-center gap-3 text-white/70 text-base">
+                  <li key={feat} className="flex items-center gap-3 text-base" style={{ color: "var(--c-dark)" }}>
                     <div className="w-5 h-5 rounded-full flex items-center justify-center shrink-0"
-                      style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                      style={{ background: "var(--c-forest)" }}>
                       <Icon name="Check" size={10} className="text-white" />
                     </div>
                     {feat}
@@ -593,8 +630,8 @@ export default function Index() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="badge-mint mb-5 inline-block">Где находится</span>
-            <h2 className="section-title text-white mb-3">Локация</h2>
-            <p className="text-white/40 text-base max-w-lg mx-auto">
+            <h2 className="section-title mb-3">Локация</h2>
+            <p className="text-gray-500 text-base max-w-lg mx-auto">
               ул. 1-я Гиринская, 33 — Индустриальный район, устоявшийся и с развитой инфраструктурой.
             </p>
           </div>
@@ -603,15 +640,15 @@ export default function Index() {
             <div>
               <div className="flex items-center gap-3 mb-5">
                 <div className="w-10 h-10 rounded-xl flex items-center justify-center"
-                  style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                  style={{ background: "var(--c-forest)" }}>
                   <Icon name="MapPin" size={17} className="text-white" />
                 </div>
                 <div>
-                  <div className="font-bold text-white text-base">г. Пермь, ул. 1-я Гиринская, д. 33</div>
-                  <div className="text-white/35 text-sm">Индустриальный район</div>
+                  <div className="font-bold text-base" style={{ color: "var(--c-dark)" }}>г. Пермь, ул. 1-я Гиринская, д. 33</div>
+                  <div className="text-gray-400 text-sm">Индустриальный район</div>
                 </div>
               </div>
-              <div className="rounded-3xl overflow-hidden" style={{ height: "360px", border: "1px solid rgba(255,255,255,0.08)" }}>
+              <div className="rounded-3xl overflow-hidden shadow-sm" style={{ height: "360px", border: "1px solid rgba(174,218,197,0.4)" }}>
                 <iframe
                   src="https://yandex.ru/map-widget/v1/?ll=56.175725%2C57.958974&z=16&l=map&pt=56.175725%2C57.958974%2Cpm2rdm"
                   width="100%" height="100%" style={{ border: 0 }} title="Карта ЖК Андроновский"
@@ -620,18 +657,18 @@ export default function Index() {
             </div>
 
             <div>
-              <h3 className="font-black text-white text-xl mb-6">Рядом с домом</h3>
+              <h3 className="font-black text-xl mb-6" style={{ color: "var(--c-dark)" }}>Рядом с домом</h3>
               <div className="space-y-3">
                 {INFRA.map(cat => (
-                  <div key={cat.label} className="flex gap-4 p-4 rounded-2xl"
-                    style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div key={cat.label} className="flex gap-4 p-4 rounded-2xl bg-white"
+                    style={{ border: "1px solid rgba(174,218,197,0.4)", boxShadow: "0 1px 8px rgba(81,123,113,0.06)" }}>
                     <div className="w-10 h-10 rounded-xl flex items-center justify-center shrink-0"
-                      style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
-                      <Icon name={cat.icon} size={16} className="text-white" fallback="MapPin" />
+                      style={{ background: "var(--c-mint)" }}>
+                      <Icon name={cat.icon} size={16} style={{ color: "var(--c-forest)" } as React.CSSProperties} fallback="MapPin" />
                     </div>
                     <div>
-                      <div className="font-semibold text-white text-sm mb-0.5">{cat.label}</div>
-                      {cat.items.map(i => <div key={i} className="text-white/40 text-sm">{i}</div>)}
+                      <div className="font-semibold text-sm mb-0.5" style={{ color: "var(--c-dark)" }}>{cat.label}</div>
+                      {cat.items.map(i => <div key={i} className="text-gray-500 text-sm">{i}</div>)}
                     </div>
                   </div>
                 ))}
@@ -642,60 +679,60 @@ export default function Index() {
       </section>
 
       {/* ═══ КОНТАКТЫ ═══ */}
-      <section id="contacts" className="py-24 darker-section">
+      <section id="contacts" className="py-24" style={{ background: "linear-gradient(135deg, var(--c-dark) 0%, var(--c-forest) 100%)" }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="badge-mint mb-5 inline-block">Связаться с нами</span>
             <h2 className="font-black text-white mb-3" style={{ fontSize: "clamp(2rem,4.5vw,3.5rem)", lineHeight: 1.1 }}>
-              Консультация<br /><span className="text-gradient">бесплатно</span>
+              Консультация<br /><span style={{ color: "var(--c-mint)" }}>бесплатно</span>
             </h2>
-            <p className="text-white/40 text-base max-w-lg mx-auto">
+            <p className="text-white/55 text-base max-w-lg mx-auto">
               Отвечаем за 15 минут. Подберём квартиру под ваш бюджет.
             </p>
           </div>
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Form */}
-            <div className="rounded-3xl p-8" style={{ background: "rgba(81,123,113,0.18)", border: "1px solid rgba(174,218,197,0.2)" }}>
+            <div className="rounded-3xl p-8 bg-white shadow-lg">
               <div className="gradient-line w-10 mb-5" />
-              <h3 className="text-white font-black text-xl mb-6">Оставить заявку</h3>
-              <LeadForm />
+              <h3 className="font-black text-xl mb-6" style={{ color: "var(--c-dark)" }}>Оставить заявку</h3>
+              <LeadFormLight />
             </div>
 
             {/* Info */}
-            <div className="space-y-5">
+            <div className="space-y-4">
               {[
                 { icon: "Phone",  label: "Телефон",     val: "+7 (342) 200-00-00", href: "tel:+73422000000", sub: null },
                 { icon: "Clock",  label: "Режим работы", val: "Пн–Пт: 9:00–20:00",  href: null, sub: "Сб: 10:00–17:00" },
                 { icon: "MapPin", label: "Офис продаж",  val: "Гостиница «Урал», ул. Ленина, 58, 1 эт.", href: null, sub: "г. Пермь" },
               ].map(row => (
-                <div key={row.label} className="flex items-start gap-4 p-5 rounded-2xl"
-                  style={{ background: "rgba(81,123,113,0.14)", border: "1px solid rgba(174,218,197,0.15)" }}>
+                <div key={row.label} className="flex items-start gap-4 p-5 rounded-2xl glass-dark">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
-                    style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                    style={{ background: "var(--c-teal)" }}>
                     <Icon name={row.icon} size={18} className="text-white" fallback="Info" />
                   </div>
                   <div>
-                    <div className="text-white/30 text-xs uppercase tracking-wider mb-1">{row.label}</div>
+                    <div className="text-white/40 text-xs uppercase tracking-wider mb-1">{row.label}</div>
                     {row.href
-                      ? <a href={row.href} className="text-white font-bold text-base hover:text-gradient transition-colors">{row.val}</a>
+                      ? <a href={row.href} className="text-white font-bold text-base hover:text-[var(--c-mint)] transition-colors">{row.val}</a>
                       : <div className="text-white font-semibold text-base leading-snug">{row.val}</div>
                     }
-                    {row.sub && <div className="text-white/35 text-sm mt-0.5">{row.sub}</div>}
+                    {row.sub && <div className="text-white/40 text-sm mt-0.5">{row.sub}</div>}
                   </div>
                 </div>
               ))}
 
               {/* Quick callback */}
-              <div className="rounded-2xl p-5" style={{ background: "rgba(222,65,149,0.08)", border: "1px solid rgba(222,65,149,0.2)" }}>
+              <div className="rounded-2xl p-5 glass-dark">
                 <p className="text-white font-bold mb-1">Быстрый звонок</p>
-                <p className="text-white/40 text-xs mb-4">Оставьте номер — перезвоним за 15 минут</p>
+                <p className="text-white/45 text-xs mb-4">Оставьте номер — перезвоним за 15 минут</p>
                 <form onSubmit={e => e.preventDefault()} className="flex flex-col gap-3">
                   <div className="flex gap-2">
                     <input type="tel" placeholder="+7 (___) ___-__-__"
-                      className="flex-1 px-4 py-3 rounded-xl bg-white/6 border border-white/12 text-white placeholder-white/30 focus:outline-none text-sm" />
+                      className="flex-1 px-4 py-3 rounded-xl text-white placeholder-white/30 focus:outline-none text-sm"
+                      style={{ background: "rgba(255,255,255,0.1)", border: "1px solid rgba(255,255,255,0.15)" }} />
                     <button type="submit" className="px-5 py-3 rounded-full font-bold text-white text-sm transition-all hover:-translate-y-0.5"
-                      style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
+                      style={{ background: "var(--c-teal)" }}>
                       Звонок
                     </button>
                   </div>

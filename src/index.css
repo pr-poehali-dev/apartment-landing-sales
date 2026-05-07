@@ -56,8 +56,8 @@
   }
   body {
     font-family: "Golos Text", sans-serif;
-    background-color: var(--c-dark);
-    color: var(--c-sand);
+    background-color: #ffffff;
+    color: var(--c-dark);
   }
 }
 
@@ -71,6 +71,7 @@
     font-weight: 900;
     @apply text-3xl md:text-4xl lg:text-5xl;
     line-height: 1.1;
+    color: var(--c-dark);
   }
 
   /* === КНОПКИ === */
@@ -125,28 +126,23 @@
 
   /* === СЕКЦИИ === */
   .dark-section {
-    background: var(--c-dark);
+    background: #ffffff;
   }
   .darker-section {
-    background: #1e3530;
+    background: #f4f7f5;
   }
   .card-section {
-    background: #243d38;
+    background: #eaf1ee;
   }
   .accent-section {
-    background: linear-gradient(
-      135deg,
-      var(--c-dark) 0%,
-      var(--c-forest) 50%,
-      var(--c-dark) 100%
-    );
+    background: linear-gradient(135deg, var(--c-forest) 0%, var(--c-teal) 100%);
   }
 
   /* === GLASS === */
   .glass-light {
-    background: rgba(44, 74, 67, 0.55);
+    background: rgba(255, 255, 255, 0.85);
     backdrop-filter: blur(18px);
-    border: 1px solid rgba(174, 218, 197, 0.18);
+    border: 1px solid rgba(174, 218, 197, 0.4);
   }
   .glass-dark {
     background: rgba(20, 40, 35, 0.65);
@@ -154,9 +150,9 @@
     border: 1px solid rgba(174, 218, 197, 0.12);
   }
   .glass-card {
-    background: rgba(81, 123, 113, 0.12);
+    background: rgba(255, 255, 255, 0.9);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(174, 218, 197, 0.14);
+    border: 1px solid rgba(81, 123, 113, 0.2);
   }
 
   /* === БЕЙДЖИ === */
