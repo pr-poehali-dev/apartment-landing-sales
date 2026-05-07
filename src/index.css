@@ -56,7 +56,7 @@
   }
   body {
     font-family: "Golos Text", sans-serif;
-    background-color: #0e1a17;
+    background-color: var(--c-dark);
     color: var(--c-sand);
   }
 }
@@ -117,41 +117,46 @@
   .hero-overlay {
     background: linear-gradient(
       110deg,
-      rgba(8, 18, 15, 0.8) 0%,
-      rgba(14, 26, 23, 0.55) 55%,
-      rgba(0, 0, 0, 0.25) 100%
+      rgba(20, 40, 35, 0.8) 0%,
+      rgba(44, 74, 67, 0.5) 55%,
+      rgba(0, 0, 0, 0.2) 100%
     );
   }
 
   /* === СЕКЦИИ === */
   .dark-section {
-    background: #0e1a17;
+    background: var(--c-dark);
   }
   .darker-section {
-    background: #080f0d;
+    background: #1e3530;
   }
   .card-section {
-    background: #131f1c;
+    background: #243d38;
   }
   .accent-section {
-    background: linear-gradient(135deg, #0e1a17 0%, #1a2e28 50%, #0e1a17 100%);
+    background: linear-gradient(
+      135deg,
+      var(--c-dark) 0%,
+      var(--c-forest) 50%,
+      var(--c-dark) 100%
+    );
   }
 
   /* === GLASS === */
   .glass-light {
-    background: rgba(235, 234, 214, 0.08);
+    background: rgba(44, 74, 67, 0.55);
     backdrop-filter: blur(18px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+    border: 1px solid rgba(174, 218, 197, 0.18);
   }
   .glass-dark {
-    background: rgba(14, 26, 23, 0.6);
+    background: rgba(20, 40, 35, 0.65);
     backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border: 1px solid rgba(174, 218, 197, 0.12);
   }
   .glass-card {
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(81, 123, 113, 0.12);
     backdrop-filter: blur(12px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(174, 218, 197, 0.14);
   }
 
   /* === БЕЙДЖИ === */

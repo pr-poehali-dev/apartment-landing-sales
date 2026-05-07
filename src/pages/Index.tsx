@@ -195,7 +195,7 @@ export default function Index() {
       {/* ═══ NAVBAR ═══ */}
       <nav
         className="fixed top-0 left-0 right-0 z-50"
-        style={{ background: "rgba(8,15,13,0.88)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(255,255,255,0.06)" }}
+        style={{ background: "rgba(26,52,46,0.92)", backdropFilter: "blur(20px)", borderBottom: "1px solid rgba(174,218,197,0.12)" }}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex items-center justify-between h-16">
           <div className="flex items-center gap-3">
@@ -284,7 +284,7 @@ export default function Index() {
 
             {/* Form card */}
             <div className="lg:col-span-2 anim-up d3">
-              <div className="rounded-3xl p-7 max-w-sm mx-auto lg:ml-auto lg:mr-0" style={{ background: "rgba(14,26,23,0.75)", backdropFilter: "blur(24px)", border: "1px solid rgba(255,255,255,0.1)" }}>
+              <div className="rounded-3xl p-7 max-w-sm mx-auto lg:ml-auto lg:mr-0" style={{ background: "rgba(28,55,48,0.85)", backdropFilter: "blur(24px)", border: "1px solid rgba(174,218,197,0.18)" }}>
                 <div className="mb-5">
                   <div className="gradient-line w-10 mb-4" />
                   <h3 className="font-black text-white text-xl mb-1">Узнать стоимость</h3>
@@ -345,7 +345,7 @@ export default function Index() {
               <div
                 key={adv.title}
                 className="card-lift rounded-2xl p-7 group cursor-default"
-                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}
+                style={{ background: "rgba(81,123,113,0.14)", border: "1px solid rgba(174,218,197,0.15)" }}
               >
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center"
@@ -393,7 +393,7 @@ export default function Index() {
           <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5 mb-10">
             {PLANS.map(p => (
               <div key={p.type} className="card-lift rounded-2xl overflow-hidden flex flex-col"
-                style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+                style={{ background: "rgba(81,123,113,0.16)", border: "1px solid rgba(174,218,197,0.18)" }}>
                 <div className="relative bg-white/5 flex items-center justify-center p-4" style={{ height: "200px" }}>
                   {p.badge && (
                     <span className="absolute top-3 left-3 z-10 badge-pink">{p.badge}</span>
@@ -453,7 +453,7 @@ export default function Index() {
               { icon: "Banknote",      title: "Полная оплата",              desc: "Внесите всю сумму единовременно и зафиксируйте лучшую цену без переплат.", num: "03" },
             ].map(item => (
               <div key={item.title} className="card-lift rounded-2xl p-8 group"
-                style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                style={{ background: "rgba(81,123,113,0.14)", border: "1px solid rgba(174,218,197,0.15)" }}>
                 <div className="flex items-start justify-between mb-6">
                   <div className="w-12 h-12 rounded-xl flex items-center justify-center"
                     style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
@@ -642,7 +642,7 @@ export default function Index() {
       </section>
 
       {/* ═══ КОНТАКТЫ ═══ */}
-      <section id="contacts" className="py-24" style={{ background: "#080f0d" }}>
+      <section id="contacts" className="py-24 darker-section">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-14">
             <span className="badge-mint mb-5 inline-block">Связаться с нами</span>
@@ -656,7 +656,7 @@ export default function Index() {
 
           <div className="grid md:grid-cols-2 gap-8 max-w-4xl mx-auto">
             {/* Form */}
-            <div className="rounded-3xl p-8" style={{ background: "rgba(255,255,255,0.04)", border: "1px solid rgba(255,255,255,0.08)" }}>
+            <div className="rounded-3xl p-8" style={{ background: "rgba(81,123,113,0.18)", border: "1px solid rgba(174,218,197,0.2)" }}>
               <div className="gradient-line w-10 mb-5" />
               <h3 className="text-white font-black text-xl mb-6">Оставить заявку</h3>
               <LeadForm />
@@ -670,7 +670,7 @@ export default function Index() {
                 { icon: "MapPin", label: "Офис продаж",  val: "Гостиница «Урал», ул. Ленина, 58, 1 эт.", href: null, sub: "г. Пермь" },
               ].map(row => (
                 <div key={row.label} className="flex items-start gap-4 p-5 rounded-2xl"
-                  style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
+                  style={{ background: "rgba(81,123,113,0.14)", border: "1px solid rgba(174,218,197,0.15)" }}>
                   <div className="w-11 h-11 rounded-xl flex items-center justify-center shrink-0"
                     style={{ background: "linear-gradient(135deg, var(--c-pink), var(--c-orange))" }}>
                     <Icon name={row.icon} size={18} className="text-white" fallback="Info" />
@@ -708,7 +708,7 @@ export default function Index() {
       </section>
 
       {/* ═══ ДИСКЛЕЙМЕРЫ ═══ */}
-      <section style={{ background: "#050a08" }} className="py-10">
+      <section style={{ background: "#111e1b" }} className="py-10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="mb-6 px-5 py-4 rounded-xl" style={{ background: "rgba(255,255,255,0.03)", border: "1px solid rgba(255,255,255,0.06)" }}>
             <p className="text-white/50 text-xs font-bold uppercase tracking-widest mb-1">Важно</p>
@@ -731,7 +731,7 @@ export default function Index() {
       </section>
 
       {/* ═══ FOOTER ═══ */}
-      <footer style={{ background: "#030705" }} className="py-6 border-t border-white/5">
+      <footer style={{ background: "var(--c-dark)" }} className="py-6 border-t border-white/8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col md:flex-row items-center justify-between gap-4">
           <div className="flex items-center gap-2.5">
             <div className="w-7 h-7 rounded-lg flex items-center justify-center"
